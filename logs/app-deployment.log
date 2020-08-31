@@ -1,0 +1,4749 @@
+INFO:20200831_13:08:05 - :Creating new dynamodb Table: =======================================
+"dynamodb.Table(name='AnhPollyProject')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:08:06 - :Creating new S3 buckets: =======================================
+"s3.Bucket(name='anh-pollybucket-in')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:08:06 - :Creating new S3 buckets: =======================================
+"s3.Bucket(name='anh-pollybucket-out')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:08:07 - :Creating new SNS topic: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "323",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:08:06 GMT",
+            "x-amzn-requestid": "c0cb3ad3-2908-596d-986d-6d15d17f9629"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "c0cb3ad3-2908-596d-986d-6d15d17f9629",
+        "RetryAttempts": 0
+    },
+    "TopicArn": "arn:aws:sns:us-east-1:846382335153:anh_polly_events"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:08:18 - :Creating new IAM Policy for Lambda to access s3,sns,polly,dynamodb,logs: =======================================
+{
+    "Policy": {
+        "Arn": "arn:aws:iam::846382335153:policy/anh-lambda-policy",
+        "AttachmentCount": 0,
+        "CreateDate": "2020-08-31 13:08:18+00:00",
+        "DefaultVersionId": "v1",
+        "IsAttachable": true,
+        "Path": "/",
+        "PermissionsBoundaryUsageCount": 0,
+        "PolicyId": "ANPA4KECRQSYWDCVV6AYQ",
+        "PolicyName": "anh-lambda-policy",
+        "UpdateDate": "2020-08-31 13:08:18+00:00"
+    },
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "769",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:08:17 GMT",
+            "x-amzn-requestid": "a25b0ab3-e15b-4468-8a3a-6edbe1dd43c6"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "a25b0ab3-e15b-4468-8a3a-6edbe1dd43c6",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:08:18 - :Creating new Lambda Role: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "784",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:08:17 GMT",
+            "x-amzn-requestid": "1d6a4f40-166c-44ae-a0ee-918a70073dfd"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "1d6a4f40-166c-44ae-a0ee-918a70073dfd",
+        "RetryAttempts": 0
+    },
+    "Role": {
+        "Arn": "arn:aws:iam::846382335153:role/anh-lambda-role",
+        "AssumeRolePolicyDocument": {
+            "Statement": [
+                {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "lambda.amazonaws.com"
+                    }
+                }
+            ],
+            "Version": "2012-10-17"
+        },
+        "CreateDate": "2020-08-31 13:08:18+00:00",
+        "Path": "/",
+        "RoleId": "AROA4KECRQSY7Q3WDFAN7",
+        "RoleName": "anh-lambda-role"
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:08:18 - :Attaching Lambda policy to Lambda Role: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "212",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:08:17 GMT",
+            "x-amzn-requestid": "5b661bf4-60f4-4f98-bf6f-0c28caa57c86"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "5b661bf4-60f4-4f98-bf6f-0c28caa57c86",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:08:30 - :Creating Lambda function PostReader_NewPosts: =======================================
+{
+    "CodeSha256": "TkfBFh9oGUuePcfsVoEDzVgfnip0srkIeSOY0C4tw0s=",
+    "CodeSize": 982,
+    "Description": "this function inserts data info dynamodb table called posts",
+    "Environment": {
+        "Variables": {
+            "DB_TABLE_NAME": "AnhPollyProject",
+            "SNS_TOPIC": "arn:aws:sns:us-east-1:846382335153:anh_polly_events"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_NewPosts",
+    "FunctionName": "PostReader_NewPosts",
+    "Handler": "createpost.lambda_handler",
+    "LastModified": "2020-08-31T13:08:30.384+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "1041",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:08:30 GMT",
+            "x-amzn-requestid": "236484c2-6afd-4b84-aa43-028bb7722444"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "236484c2-6afd-4b84-aa43-028bb7722444",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "5d24e7b5-b8a8-4393-9963-c4548a9b9787",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:08:41 - :Creating Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "CodeSha256": "XviqP6YZxx829xhKnDBjH5qkNfRnv29DhRU6rMea/Mg=",
+    "CodeSize": 3102,
+    "Description": "This function converts the text from s3 to polly mp3",
+    "Environment": {
+        "Variables": {
+            "BUCKET_NAME": "anh-pollybucket-out",
+            "DB_TABLE_NAME": "AnhPollyProject"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio",
+    "FunctionName": "PostReader_ConvertToAudio",
+    "Handler": "convertoaudio.lambda_handler",
+    "LastModified": "2020-08-31T13:08:41.598+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "1020",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:08:41 GMT",
+            "x-amzn-requestid": "fd8ff054-613e-43ee-9bb7-ec8fbac27436"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "fd8ff054-613e-43ee-9bb7-ec8fbac27436",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "509c37c0-3950-44d2-905e-bf08353f8b63",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:08:54 - :Creating Lambda function PostReader_GetPosts: =======================================
+{
+    "CodeSha256": "aV79D1YwJtgjSbsXZtIGoeMGokGNOBtwrpxeMcpYH/4=",
+    "CodeSize": 555,
+    "Description": "This function converts the text from s3 to polly mp3",
+    "Environment": {
+        "Variables": {
+            "DB_TABLE_NAME": "AnhPollyProject"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_GetPosts",
+    "FunctionName": "PostReader_GetPosts",
+    "Handler": "getposts.lambda_handler",
+    "LastModified": "2020-08-31T13:08:54.254+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "966",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:08:54 GMT",
+            "x-amzn-requestid": "ee1033a4-089c-4804-bd2c-4a7dd81645f2"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "ee1033a4-089c-4804-bd2c-4a7dd81645f2",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "d0ab8c37-cc6a-40d3-96a9-8e6d99ea267e",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:05 - :Adding IAM permission for SNS to invoke Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "362",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:05 GMT",
+            "x-amzn-requestid": "8330da6a-8c84-4718-ad74-4a6387e91a20"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "8330da6a-8c84-4718-ad74-4a6387e91a20",
+        "RetryAttempts": 0
+    },
+    "Statement": "{\"Sid\":\"lambda-policy-for-sns-invoke-1\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"sns.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:sns:us-east-1:846382335153:anh_polly_events\"}}}"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:05 - :Adding SNS subscription for Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "366",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:09:04 GMT",
+            "x-amzn-requestid": "75d3aa83-c4de-58a5-9277-fd453c6faddf"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "75d3aa83-c4de-58a5-9277-fd453c6faddf",
+        "RetryAttempts": 0
+    },
+    "SubscriptionArn": "arn:aws:sns:us-east-1:846382335153:anh_polly_events:29428733-5bbe-443e-870b-0fe097692215"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:16 - :Creating new REST API : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "230",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:16 GMT",
+            "x-amz-apigw-id": "SItzdLCkIAMEdUw=",
+            "x-amzn-requestid": "59a130cf-3c27-48f0-afef-720f4c3568cd"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "59a130cf-3c27-48f0-afef-720f4c3568cd",
+        "RetryAttempts": 0
+    },
+    "apiKeySource": "HEADER",
+    "createdDate": "2020-08-31 13:09:16+00:00",
+    "description": "My Lambda Polly API",
+    "endpointConfiguration": {
+        "types": [
+            "REGIONAL"
+        ]
+    },
+    "id": "4jyj3d8u6b",
+    "name": "AnhServerLessPollyAPI"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:27 - :Creating GET Method for REST API: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "135",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:27 GMT",
+            "x-amz-apigw-id": "SIt1OJDJoAMEcbA=",
+            "x-amzn-requestid": "33809243-ae92-4dee-85c8-d3a96bc8835f"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "33809243-ae92-4dee-85c8-d3a96bc8835f",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "GET",
+    "requestParameters": {
+        "method.request.querystring.postId": false
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:27 - :Creating integration for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "437",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:27 GMT",
+            "x-amz-apigw-id": "SIt1PJHboAMEcFQ=",
+            "x-amzn-requestid": "902db7d8-7db3-42eb-a290-100fa0ee7ac8"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "902db7d8-7db3-42eb-a290-100fa0ee7ac8",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "grndbxytkh",
+    "contentHandling": "CONVERT_TO_TEXT",
+    "httpMethod": "POST",
+    "passthroughBehavior": "WHEN_NO_TEMPLATES",
+    "requestTemplates": {
+        "application/json": "{\r\n    \"postId\" : \"$input.params('postId')\"\r\n}"
+    },
+    "timeoutInMillis": 29000,
+    "type": "AWS",
+    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:846382335153:function:PostReader_GetPosts/invocations"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:27 - :Creating method response for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:27 GMT",
+            "x-amz-apigw-id": "SIt1PI-soAMEc9A=",
+            "x-amzn-requestid": "1bdf1551-6ec7-419f-8147-5e441f46943c"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "1bdf1551-6ec7-419f-8147-5e441f46943c",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:27 - :Creating integration method response for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "185",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:27 GMT",
+            "x-amz-apigw-id": "SIt1QI26IAMEclA=",
+            "x-amzn-requestid": "498ea780-0572-4aca-b13e-e3f97ae61fc7"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "498ea780-0572-4aca-b13e-e3f97ae61fc7",
+        "RetryAttempts": 0
+    },
+    "contentHandling": "CONVERT_TO_TEXT",
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": null
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:28 - :Creating POST method for API : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "95",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:28 GMT",
+            "x-amz-apigw-id": "SIt1VIcmIAMEbPA=",
+            "x-amzn-requestid": "62fc65f9-3683-4f02-a4d2-821eaef67953"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "62fc65f9-3683-4f02-a4d2-821eaef67953",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "POST",
+    "requestParameters": {}
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:28 - :Creating method response for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:28 GMT",
+            "x-amz-apigw-id": "SIt1VLZ9oAMEdWA=",
+            "x-amzn-requestid": "b169ae28-2598-49ac-8c9f-91f5fb569189"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "b169ae28-2598-49ac-8c9f-91f5fb569189",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:28 - :Creating method integration for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "336",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:28 GMT",
+            "x-amz-apigw-id": "SIt1WLD0IAMEdUw=",
+            "x-amzn-requestid": "9c1a1f92-7471-4be5-93c0-b59b3c2e2d60"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "9c1a1f92-7471-4be5-93c0-b59b3c2e2d60",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "grndbxytkh",
+    "contentHandling": "CONVERT_TO_TEXT",
+    "httpMethod": "POST",
+    "passthroughBehavior": "WHEN_NO_MATCH",
+    "timeoutInMillis": 29000,
+    "type": "AWS",
+    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:846382335153:function:PostReader_NewPosts/invocations"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:28 - :Creating method integration response for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:28 GMT",
+            "x-amz-apigw-id": "SIt1XJiaIAMEdBA=",
+            "x-amzn-requestid": "5ea0f7a5-b9d2-4073-9801-507df992bab8"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "5ea0f7a5-b9d2-4073-9801-507df992bab8",
+        "RetryAttempts": 0
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": null
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:29 - :Creating OPTIONS Method for CORS : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "75",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:29 GMT",
+            "x-amz-apigw-id": "SIt1cLPVIAMEdeg=",
+            "x-amzn-requestid": "2e5359ad-d929-4586-8f75-dee873f5effc"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "2e5359ad-d929-4586-8f75-dee873f5effc",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "OPTIONS"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:29 - :Creating OPTIONS Method response for CORS : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "269",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:29 GMT",
+            "x-amz-apigw-id": "SIt1cK8QoAMEdDQ=",
+            "x-amzn-requestid": "f714b77f-de03-4a4f-b1c3-199c07be9ee3"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "f714b77f-de03-4a4f-b1c3-199c07be9ee3",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": false,
+        "method.response.header.Access-Control-Allow-Methods": false,
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:29 - :Creating OPTIONS integration for OPTIONS method: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "196",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:29 GMT",
+            "x-amz-apigw-id": "SIt1cLBJIAMEdIA=",
+            "x-amzn-requestid": "5ec6683b-016e-466c-8bd9-ce1739be10e0"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "5ec6683b-016e-466c-8bd9-ce1739be10e0",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "grndbxytkh",
+    "passthroughBehavior": "WHEN_NO_MATCH",
+    "requestTemplates": {
+        "application/json": "{\"statusCode\": 200}"
+    },
+    "timeoutInMillis": 29000,
+    "type": "MOCK"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:29 - :Creating OPTIONS integration response and CORS Headers: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "370",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:29 GMT",
+            "x-amz-apigw-id": "SIt1dLD4oAMEdUw=",
+            "x-amzn-requestid": "cc787978-4166-483e-b4fd-8bf0df38b647"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "cc787978-4166-483e-b4fd-8bf0df38b647",
+        "RetryAttempts": 0
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Methods": "'POST,GET,OPTIONS'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": "{\"statusCode\": 200}"
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:40 - :Creating new Deployment: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "83",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:40 GMT",
+            "x-amz-apigw-id": "SIt3GLFYoAMEdUw=",
+            "x-amzn-requestid": "c531bee7-e137-4551-bb3d-346d2c33a3bc"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "c531bee7-e137-4551-bb3d-346d2c33a3bc",
+        "RetryAttempts": 0
+    },
+    "createdDate": "2020-08-31 13:09:40+00:00",
+    "description": "Polly development gateway",
+    "id": "jnocul"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:40 - :Updating Deployment STAGE for throttles: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "554",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:40 GMT",
+            "x-amz-apigw-id": "SIt3NIdIoAMEbTw=",
+            "x-amzn-requestid": "a3ed9bd4-3cfd-4e0f-bfb6-1768eb54acb9"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "a3ed9bd4-3cfd-4e0f-bfb6-1768eb54acb9",
+        "RetryAttempts": 0
+    },
+    "cacheClusterEnabled": false,
+    "cacheClusterStatus": "NOT_AVAILABLE",
+    "createdDate": "2020-08-31 13:09:40+00:00",
+    "deploymentId": "jnocul",
+    "description": "Polly development gateway",
+    "lastUpdatedDate": "2020-08-31 13:09:40+00:00",
+    "methodSettings": {
+        "*/*": {
+            "cacheDataEncrypted": false,
+            "cacheTtlInSeconds": 300,
+            "cachingEnabled": false,
+            "dataTraceEnabled": false,
+            "metricsEnabled": false,
+            "requireAuthorizationForCacheControl": true,
+            "throttlingBurstLimit": 5,
+            "throttlingRateLimit": 2.0,
+            "unauthorizedCacheControlHeaderStrategy": "SUCCEED_WITH_RESPONSE_HEADER"
+        }
+    },
+    "stageName": "Anhdevelopment",
+    "tracingEnabled": false
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:09:51 - :Adding Lambda invoke permission for API Gateway: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "399",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:09:51 GMT",
+            "x-amzn-requestid": "5d00008f-d682-4f0a-867d-89b317eda452"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "5d00008f-d682-4f0a-867d-89b317eda452",
+        "RetryAttempts": 0
+    },
+    "Statement": "{\"Sid\":\"apigateway-lambda-invoke-perms-PostReader_ConvertToAudio\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"apigateway.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:execute-api:us-east-1:846382335153:4jyj3d8u6b/*\"}}}"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:14:51 - :Deleting dynamodb Table: =======================================
+"AnhPollyProject"
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:14:52 - :Deleting bucket objects: =======================================
+[]
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:14:52 - :Deleting buckets: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 13:14:53 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "HZtXd+xNh5gKuOl+5P9IdJb5uJAyikZEOq0+sWDVMxWthawNKl7xQ49XwHj9LHoUqL4sEsplA9A=",
+            "x-amz-request-id": "ET4JDJBX9ZAP3S9P"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "HZtXd+xNh5gKuOl+5P9IdJb5uJAyikZEOq0+sWDVMxWthawNKl7xQ49XwHj9LHoUqL4sEsplA9A=",
+        "RequestId": "ET4JDJBX9ZAP3S9P",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:14:52 - :Deleting bucket objects: =======================================
+[]
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:14:52 - :Deleting buckets: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 13:14:53 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "3oHY9hA8NJygKZAAuYzKcMcAj5JPr+5yrquuN0ZhDlDQi+PBFyk23Z+45zpKJOK1HvIvEa3a2yc=",
+            "x-amz-request-id": "74BDA4F4BE8A0D3E"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "3oHY9hA8NJygKZAAuYzKcMcAj5JPr+5yrquuN0ZhDlDQi+PBFyk23Z+45zpKJOK1HvIvEa3a2yc=",
+        "RequestId": "74BDA4F4BE8A0D3E",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:14:52 - :Deleting SNS topic: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "201",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:14:52 GMT",
+            "x-amzn-requestid": "920adeff-26c0-574f-b7c0-8939dcccec03"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "920adeff-26c0-574f-b7c0-8939dcccec03",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:21:00 - :Creating new dynamodb Table: =======================================
+"dynamodb.Table(name='AnhPollyProject')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:21:01 - :Creating new S3 buckets: =======================================
+"s3.Bucket(name='anh-pollybucket-in')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:21:03 - :Creating new S3 buckets: =======================================
+"s3.Bucket(name='anh-pollybucket-out')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:21:03 - :Updating bucket policies: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 13:21:04 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "X4NqCEVP42lNsYEJz20Uzkq+Z/K4S/veO45Rf3Nqd2Uc+K4ia6Hifp0h1IW9+FFKyx+r1biST3k=",
+            "x-amz-request-id": "99037CD128A084DB"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "X4NqCEVP42lNsYEJz20Uzkq+Z/K4S/veO45Rf3Nqd2Uc+K4ia6Hifp0h1IW9+FFKyx+r1biST3k=",
+        "RequestId": "99037CD128A084DB",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:21:03 - :Updating bucket policies: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 13:21:04 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "oKHMHHE04+kjpL74cU3JuijL/AITJ+HlxVMOn2jkK7jRLfYV4UEuZk89swUaFeATTo2mUkUJ7/g=",
+            "x-amz-request-id": "9AE65AA0A200252B"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "oKHMHHE04+kjpL74cU3JuijL/AITJ+HlxVMOn2jkK7jRLfYV4UEuZk89swUaFeATTo2mUkUJ7/g=",
+        "RequestId": "9AE65AA0A200252B",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:21:03 - :Creating new SNS topic: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "323",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:21:03 GMT",
+            "x-amzn-requestid": "b3b98009-b358-58fd-bf13-d7cf482753fb"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "b3b98009-b358-58fd-bf13-d7cf482753fb",
+        "RetryAttempts": 0
+    },
+    "TopicArn": "arn:aws:sns:us-east-1:846382335153:anh_polly_events"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:21:14 - :Creating new IAM Policy for Lambda to access s3,sns,polly,dynamodb,logs: =======================================
+{
+    "Policy": {
+        "Arn": "arn:aws:iam::846382335153:policy/anh-lambda-policy",
+        "AttachmentCount": 0,
+        "CreateDate": "2020-08-31 13:21:14+00:00",
+        "DefaultVersionId": "v1",
+        "IsAttachable": true,
+        "Path": "/",
+        "PermissionsBoundaryUsageCount": 0,
+        "PolicyId": "ANPA4KECRQSYZJS3VW5KK",
+        "PolicyName": "anh-lambda-policy",
+        "UpdateDate": "2020-08-31 13:21:14+00:00"
+    },
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "769",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:21:14 GMT",
+            "x-amzn-requestid": "e660f169-f3d5-41c3-801d-8016cfafbe95"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "e660f169-f3d5-41c3-801d-8016cfafbe95",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:21:14 - :Creating new Lambda Role: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "784",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:21:14 GMT",
+            "x-amzn-requestid": "bbda0b87-5d17-4e12-b2a4-35cefb6a7ad2"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "bbda0b87-5d17-4e12-b2a4-35cefb6a7ad2",
+        "RetryAttempts": 0
+    },
+    "Role": {
+        "Arn": "arn:aws:iam::846382335153:role/anh-lambda-role",
+        "AssumeRolePolicyDocument": {
+            "Statement": [
+                {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "lambda.amazonaws.com"
+                    }
+                }
+            ],
+            "Version": "2012-10-17"
+        },
+        "CreateDate": "2020-08-31 13:21:14+00:00",
+        "Path": "/",
+        "RoleId": "AROA4KECRQSYSHY6TATNA",
+        "RoleName": "anh-lambda-role"
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:21:14 - :Attaching Lambda policy to Lambda Role: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "212",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:21:14 GMT",
+            "x-amzn-requestid": "acb3990d-cedd-4443-9fb2-5dd41e798d04"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "acb3990d-cedd-4443-9fb2-5dd41e798d04",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:21:27 - :Creating Lambda function PostReader_NewPosts: =======================================
+{
+    "CodeSha256": "TkfBFh9oGUuePcfsVoEDzVgfnip0srkIeSOY0C4tw0s=",
+    "CodeSize": 982,
+    "Description": "this function inserts data info dynamodb table called posts",
+    "Environment": {
+        "Variables": {
+            "DB_TABLE_NAME": "AnhPollyProject",
+            "SNS_TOPIC": "arn:aws:sns:us-east-1:846382335153:anh_polly_events"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_NewPosts",
+    "FunctionName": "PostReader_NewPosts",
+    "Handler": "createpost.lambda_handler",
+    "LastModified": "2020-08-31T13:21:27.156+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "1041",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:21:27 GMT",
+            "x-amzn-requestid": "8f18fc88-a22f-4501-a865-24b03b4db160"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "8f18fc88-a22f-4501-a865-24b03b4db160",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "7f6f5270-8446-4aa6-9afa-50f3967b8096",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:21:38 - :Creating Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "CodeSha256": "XviqP6YZxx829xhKnDBjH5qkNfRnv29DhRU6rMea/Mg=",
+    "CodeSize": 3102,
+    "Description": "This function converts the text from s3 to polly mp3",
+    "Environment": {
+        "Variables": {
+            "BUCKET_NAME": "anh-pollybucket-out",
+            "DB_TABLE_NAME": "AnhPollyProject"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio",
+    "FunctionName": "PostReader_ConvertToAudio",
+    "Handler": "convertoaudio.lambda_handler",
+    "LastModified": "2020-08-31T13:21:38.407+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "1020",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:21:38 GMT",
+            "x-amzn-requestid": "b8f68461-6eca-4d2e-8144-1c99c4f4dce2"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "b8f68461-6eca-4d2e-8144-1c99c4f4dce2",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "8f799c94-224c-46b3-b839-fc1b2b96be51",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:21:49 - :Creating Lambda function PostReader_GetPosts: =======================================
+{
+    "CodeSha256": "aV79D1YwJtgjSbsXZtIGoeMGokGNOBtwrpxeMcpYH/4=",
+    "CodeSize": 555,
+    "Description": "This function converts the text from s3 to polly mp3",
+    "Environment": {
+        "Variables": {
+            "DB_TABLE_NAME": "AnhPollyProject"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_GetPosts",
+    "FunctionName": "PostReader_GetPosts",
+    "Handler": "getposts.lambda_handler",
+    "LastModified": "2020-08-31T13:21:49.580+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "966",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:21:49 GMT",
+            "x-amzn-requestid": "30c7c2fc-fba8-4321-86e3-5de0672900ca"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "30c7c2fc-fba8-4321-86e3-5de0672900ca",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "8d17dda2-0c59-4944-a5e5-07cf54712170",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:00 - :Adding IAM permission for SNS to invoke Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "362",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:00 GMT",
+            "x-amzn-requestid": "2390ff83-8179-4ad1-ba43-5c639a9650db"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "2390ff83-8179-4ad1-ba43-5c639a9650db",
+        "RetryAttempts": 0
+    },
+    "Statement": "{\"Sid\":\"lambda-policy-for-sns-invoke-1\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"sns.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:sns:us-east-1:846382335153:anh_polly_events\"}}}"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:01 - :Adding SNS subscription for Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "366",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:22:00 GMT",
+            "x-amzn-requestid": "cd540bdb-ec9e-594f-bae4-5c1d1726ad7f"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "cd540bdb-ec9e-594f-bae4-5c1d1726ad7f",
+        "RetryAttempts": 0
+    },
+    "SubscriptionArn": "arn:aws:sns:us-east-1:846382335153:anh_polly_events:36f7d2a6-4dc9-4ea7-af04-23a4a0a6dcc9"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:12 - :Creating new REST API : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "230",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:12 GMT",
+            "x-amz-apigw-id": "SIvsoKQuIAMEd2w=",
+            "x-amzn-requestid": "52cd6bd1-8f39-40f2-8360-06f3589414f0"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "52cd6bd1-8f39-40f2-8360-06f3589414f0",
+        "RetryAttempts": 0
+    },
+    "apiKeySource": "HEADER",
+    "createdDate": "2020-08-31 13:22:12+00:00",
+    "description": "My Lambda Polly API",
+    "endpointConfiguration": {
+        "types": [
+            "REGIONAL"
+        ]
+    },
+    "id": "q36q69tiw5",
+    "name": "AnhServerLessPollyAPI"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:23 - :Creating GET Method for REST API: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "135",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:23 GMT",
+            "x-amz-apigw-id": "SIvuYI4oIAMEdtA=",
+            "x-amzn-requestid": "c07b806e-ed51-4568-9afe-88f66fa7e978"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "c07b806e-ed51-4568-9afe-88f66fa7e978",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "GET",
+    "requestParameters": {
+        "method.request.querystring.postId": false
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:23 - :Creating integration for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "437",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:23 GMT",
+            "x-amz-apigw-id": "SIvuZIrfIAMEdDQ=",
+            "x-amzn-requestid": "e40cc09c-a59c-4128-bf80-82c0211be3a9"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "e40cc09c-a59c-4128-bf80-82c0211be3a9",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "qth8o1qfe2",
+    "contentHandling": "CONVERT_TO_TEXT",
+    "httpMethod": "POST",
+    "passthroughBehavior": "WHEN_NO_TEMPLATES",
+    "requestTemplates": {
+        "application/json": "{\r\n    \"postId\" : \"$input.params('postId')\"\r\n}"
+    },
+    "timeoutInMillis": 29000,
+    "type": "AWS",
+    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:846382335153:function:PostReader_GetPosts/invocations"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:23 - :Creating method response for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:23 GMT",
+            "x-amz-apigw-id": "SIvuaIzNoAMEdUw=",
+            "x-amzn-requestid": "95ccde53-aac4-45d9-ad60-9f4e6241a07f"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "95ccde53-aac4-45d9-ad60-9f4e6241a07f",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:23 - :Creating integration method response for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "185",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:23 GMT",
+            "x-amz-apigw-id": "SIvuaLvSIAMEdYw=",
+            "x-amzn-requestid": "16e418e7-0c36-4113-94e6-b2f2163b97ef"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "16e418e7-0c36-4113-94e6-b2f2163b97ef",
+        "RetryAttempts": 0
+    },
+    "contentHandling": "CONVERT_TO_TEXT",
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": null
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:23 - :Creating POST method for API : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "95",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:23 GMT",
+            "x-amz-apigw-id": "SIvufLmRoAMEbLA=",
+            "x-amzn-requestid": "3a645463-80b5-4952-84c8-893ebda6b2db"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "3a645463-80b5-4952-84c8-893ebda6b2db",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "POST",
+    "requestParameters": {}
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:23 - :Creating method response for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:23 GMT",
+            "x-amz-apigw-id": "SIvufKK5IAMEbOA=",
+            "x-amzn-requestid": "4536fdd6-e015-4d31-b474-71ec54b17b10"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "4536fdd6-e015-4d31-b474-71ec54b17b10",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:23 - :Creating method integration for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "336",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:23 GMT",
+            "x-amz-apigw-id": "SIvugI4sIAMEdtA=",
+            "x-amzn-requestid": "c6e1ba0d-9106-4279-a733-cd7f1aa014f0"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "c6e1ba0d-9106-4279-a733-cd7f1aa014f0",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "qth8o1qfe2",
+    "contentHandling": "CONVERT_TO_TEXT",
+    "httpMethod": "POST",
+    "passthroughBehavior": "WHEN_NO_MATCH",
+    "timeoutInMillis": 29000,
+    "type": "AWS",
+    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:846382335153:function:PostReader_NewPosts/invocations"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:24 - :Creating method integration response for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:24 GMT",
+            "x-amz-apigw-id": "SIvugIzQoAMEdUw=",
+            "x-amzn-requestid": "86226e7d-1203-4fbc-8545-fcf470027cf6"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "86226e7d-1203-4fbc-8545-fcf470027cf6",
+        "RetryAttempts": 0
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": null
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:24 - :Creating OPTIONS Method for CORS : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "75",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:24 GMT",
+            "x-amz-apigw-id": "SIvulLmXIAMEbLA=",
+            "x-amzn-requestid": "f12b5db0-7cc9-41b9-b2a2-d605b848617c"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "f12b5db0-7cc9-41b9-b2a2-d605b848617c",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "OPTIONS"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:24 - :Creating OPTIONS Method response for CORS : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "269",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:24 GMT",
+            "x-amz-apigw-id": "SIvulKaKoAMEbRg=",
+            "x-amzn-requestid": "08b28322-d7ce-449b-92c9-c95dfed629b2"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "08b28322-d7ce-449b-92c9-c95dfed629b2",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": false,
+        "method.response.header.Access-Control-Allow-Methods": false,
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:24 - :Creating OPTIONS integration for OPTIONS method: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "196",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:24 GMT",
+            "x-amz-apigw-id": "SIvumItvIAMEd1w=",
+            "x-amzn-requestid": "222e8f28-3628-408d-9a59-be4a067c8ec2"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "222e8f28-3628-408d-9a59-be4a067c8ec2",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "qth8o1qfe2",
+    "passthroughBehavior": "WHEN_NO_MATCH",
+    "requestTemplates": {
+        "application/json": "{\"statusCode\": 200}"
+    },
+    "timeoutInMillis": 29000,
+    "type": "MOCK"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:24 - :Creating OPTIONS integration response and CORS Headers: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "370",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:24 GMT",
+            "x-amz-apigw-id": "SIvumI-voAMEdeg=",
+            "x-amzn-requestid": "b41c4312-ba43-470a-b765-d5cd3a48c1db"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "b41c4312-ba43-470a-b765-d5cd3a48c1db",
+        "RetryAttempts": 0
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Methods": "'POST,GET,OPTIONS'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": "{\"statusCode\": 200}"
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:35 - :Creating new Deployment: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "83",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:35 GMT",
+            "x-amz-apigw-id": "SIvwPKbMIAMEbRg=",
+            "x-amzn-requestid": "659ac6fc-4ed1-4001-b746-86f295e3e8bd"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "659ac6fc-4ed1-4001-b746-86f295e3e8bd",
+        "RetryAttempts": 0
+    },
+    "createdDate": "2020-08-31 13:22:35+00:00",
+    "description": "Polly development gateway",
+    "id": "ewmilv"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:35 - :Updating Deployment STAGE for throttles: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "554",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:35 GMT",
+            "x-amz-apigw-id": "SIvwTJKsIAMEdWA=",
+            "x-amzn-requestid": "72d059e5-27f3-411a-83f2-9d5e8a7ef164"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "72d059e5-27f3-411a-83f2-9d5e8a7ef164",
+        "RetryAttempts": 0
+    },
+    "cacheClusterEnabled": false,
+    "cacheClusterStatus": "NOT_AVAILABLE",
+    "createdDate": "2020-08-31 13:22:35+00:00",
+    "deploymentId": "ewmilv",
+    "description": "Polly development gateway",
+    "lastUpdatedDate": "2020-08-31 13:22:35+00:00",
+    "methodSettings": {
+        "*/*": {
+            "cacheDataEncrypted": false,
+            "cacheTtlInSeconds": 300,
+            "cachingEnabled": false,
+            "dataTraceEnabled": false,
+            "metricsEnabled": false,
+            "requireAuthorizationForCacheControl": true,
+            "throttlingBurstLimit": 5,
+            "throttlingRateLimit": 2.0,
+            "unauthorizedCacheControlHeaderStrategy": "SUCCEED_WITH_RESPONSE_HEADER"
+        }
+    },
+    "stageName": "Anhdevelopment",
+    "tracingEnabled": false
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:22:46 - :Adding Lambda invoke permission for API Gateway: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "399",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:22:46 GMT",
+            "x-amzn-requestid": "b6c0e3a3-ab0d-48ba-88c5-a1a7cb45afeb"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "b6c0e3a3-ab0d-48ba-88c5-a1a7cb45afeb",
+        "RetryAttempts": 0
+    },
+    "Statement": "{\"Sid\":\"apigateway-lambda-invoke-perms-PostReader_ConvertToAudio\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"apigateway.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:execute-api:us-east-1:846382335153:q36q69tiw5/*\"}}}"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:34:04 - :Adding scripts.js to S3 bucket anh-pollybucket-in: =======================================
+{
+    "ETag": "\"a7b401eb05bab6735127fb86397808d9\"",
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "0",
+            "date": "Mon, 31 Aug 2020 13:34:05 GMT",
+            "etag": "\"a7b401eb05bab6735127fb86397808d9\"",
+            "server": "AmazonS3",
+            "x-amz-id-2": "wWfOU7H+AFJ82pMpAHlLEBiqG/yS95rL8y52llDMCbC6SLR8jSnlh2pKmrAgxmoE4KwzJ5YRkt4=",
+            "x-amz-request-id": "EB1A74DBEA9988E7"
+        },
+        "HTTPStatusCode": 200,
+        "HostId": "wWfOU7H+AFJ82pMpAHlLEBiqG/yS95rL8y52llDMCbC6SLR8jSnlh2pKmrAgxmoE4KwzJ5YRkt4=",
+        "RequestId": "EB1A74DBEA9988E7",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:34:04 - :Adding styles.css to S3 bucket anh-pollybucket-in: =======================================
+{
+    "ETag": "\"110dbab1b50144c12f104a2548de4de0\"",
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "0",
+            "date": "Mon, 31 Aug 2020 13:34:05 GMT",
+            "etag": "\"110dbab1b50144c12f104a2548de4de0\"",
+            "server": "AmazonS3",
+            "x-amz-id-2": "can/IAGsVzQCOIriHtvIaC//opRa9+88phHPRWEhzIJ70pQAU9/RJ6FptL82mKQ06IC22Vk5Uh8=",
+            "x-amz-request-id": "11271B3A3A2CEECE"
+        },
+        "HTTPStatusCode": 200,
+        "HostId": "can/IAGsVzQCOIriHtvIaC//opRa9+88phHPRWEhzIJ70pQAU9/RJ6FptL82mKQ06IC22Vk5Uh8=",
+        "RequestId": "11271B3A3A2CEECE",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:34:04 - :Adding index.html to S3 bucket anh-pollybucket-in: =======================================
+{
+    "ETag": "\"d6fba74d81021e652c324b5d952d0281\"",
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "0",
+            "date": "Mon, 31 Aug 2020 13:34:05 GMT",
+            "etag": "\"d6fba74d81021e652c324b5d952d0281\"",
+            "server": "AmazonS3",
+            "x-amz-id-2": "FQKmC4E9rClXknNr6FDsvejbw4HI31wselL46zQQNJnhaFGn+kqtn3a0P2CMP2Wb3nx15YXHE6I=",
+            "x-amz-request-id": "F3A91FEA097AA39D"
+        },
+        "HTTPStatusCode": 200,
+        "HostId": "FQKmC4E9rClXknNr6FDsvejbw4HI31wselL46zQQNJnhaFGn+kqtn3a0P2CMP2Wb3nx15YXHE6I=",
+        "RequestId": "F3A91FEA097AA39D",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:38:01 - :Deleting dynamodb Table: =======================================
+"AnhPollyProject"
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:38:01 - :Deleting bucket objects: =======================================
+[
+    {
+        "Deleted": [
+            {
+                "Key": "scripts.js"
+            },
+            {
+                "Key": "index.html"
+            },
+            {
+                "Key": "styles.css"
+            }
+        ],
+        "ResponseMetadata": {
+            "HTTPHeaders": {
+                "date": "Mon, 31 Aug 2020 13:38:02 GMT",
+                "server": "AmazonS3",
+                "transfer-encoding": "chunked",
+                "x-amz-id-2": "pvu7JGI4HvRZKzFpMkbY3sulqbNu82SfkS1nlRKutWhaZeqAtpGkFQLN6tyYdk6uTkyYPtkNDW8=",
+                "x-amz-request-id": "36DFF8C7AA520913"
+            },
+            "HTTPStatusCode": 200,
+            "HostId": "pvu7JGI4HvRZKzFpMkbY3sulqbNu82SfkS1nlRKutWhaZeqAtpGkFQLN6tyYdk6uTkyYPtkNDW8=",
+            "RequestId": "36DFF8C7AA520913",
+            "RetryAttempts": 0
+        }
+    }
+]
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:38:01 - :Deleting buckets: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 13:38:02 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "DB3wTot74NB8YdyzRLIgQXB7R4N4Bf4P5qxLdtjq97GjTvqThR/QCIStRm5xtEqliHx6ezvistE=",
+            "x-amz-request-id": "02E5F07E468DA653"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "DB3wTot74NB8YdyzRLIgQXB7R4N4Bf4P5qxLdtjq97GjTvqThR/QCIStRm5xtEqliHx6ezvistE=",
+        "RequestId": "02E5F07E468DA653",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:38:01 - :Deleting bucket objects: =======================================
+[]
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:38:02 - :Deleting buckets: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 13:38:02 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "p6YBef5taArciZoM1yNhS2+DBi5fgTcRt7AhcgFlEdcB1vlzY0VXfz2ibaHSUsz9RX4bvrPV+G8=",
+            "x-amz-request-id": "5FCB0160F0BF2B91"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "p6YBef5taArciZoM1yNhS2+DBi5fgTcRt7AhcgFlEdcB1vlzY0VXfz2ibaHSUsz9RX4bvrPV+G8=",
+        "RequestId": "5FCB0160F0BF2B91",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:38:02 - :Deleting SNS topic: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "201",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:38:01 GMT",
+            "x-amzn-requestid": "ffab6b3d-0690-585a-acbf-3cfbf9ea491e"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "ffab6b3d-0690-585a-acbf-3cfbf9ea491e",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:40:09 - :Creating new dynamodb Table: =======================================
+"dynamodb.Table(name='AnhPollyProject')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:40:10 - :Creating new S3 buckets: =======================================
+"s3.Bucket(name='anh-pollybucket-in')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:40:10 - :Creating new S3 buckets: =======================================
+"s3.Bucket(name='anh-pollybucket-out')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:40:10 - :Updating bucket policies: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 13:40:11 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "ytWK/YK1nT1qw3Ys4toDOcxCLVn2EJ94n8KFAWzI3OweHWXuvu1f+NhzhniB7abwYKV/fv3D+HQ=",
+            "x-amz-request-id": "CEE652655DC92123"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "ytWK/YK1nT1qw3Ys4toDOcxCLVn2EJ94n8KFAWzI3OweHWXuvu1f+NhzhniB7abwYKV/fv3D+HQ=",
+        "RequestId": "CEE652655DC92123",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:40:10 - :Updating bucket policies: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 13:40:11 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "GdFWUoD6aYYuqRxhLFJ4jjrowr8/4+fpM8WazpwV2i9cc8ptDbr2nng1+y8OeUf5wvsaUp8sowk=",
+            "x-amz-request-id": "CA84ED478BA0F597"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "GdFWUoD6aYYuqRxhLFJ4jjrowr8/4+fpM8WazpwV2i9cc8ptDbr2nng1+y8OeUf5wvsaUp8sowk=",
+        "RequestId": "CA84ED478BA0F597",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:40:11 - :Creating new SNS topic: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "323",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:40:10 GMT",
+            "x-amzn-requestid": "bfa0b9e8-b585-5adc-adca-ee2e4a7eaeda"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "bfa0b9e8-b585-5adc-adca-ee2e4a7eaeda",
+        "RetryAttempts": 0
+    },
+    "TopicArn": "arn:aws:sns:us-east-1:846382335153:anh_polly_events"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:40:22 - :Creating new IAM Policy for Lambda to access s3,sns,polly,dynamodb,logs: =======================================
+{
+    "Policy": {
+        "Arn": "arn:aws:iam::846382335153:policy/anh-lambda-policy",
+        "AttachmentCount": 0,
+        "CreateDate": "2020-08-31 13:40:22+00:00",
+        "DefaultVersionId": "v1",
+        "IsAttachable": true,
+        "Path": "/",
+        "PermissionsBoundaryUsageCount": 0,
+        "PolicyId": "ANPA4KECRQSY4BOMF74NM",
+        "PolicyName": "anh-lambda-policy",
+        "UpdateDate": "2020-08-31 13:40:22+00:00"
+    },
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "769",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:40:21 GMT",
+            "x-amzn-requestid": "0d71f88a-a3de-4d33-90fa-7d19a057a12e"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "0d71f88a-a3de-4d33-90fa-7d19a057a12e",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:40:22 - :Creating new Lambda Role: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "784",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:40:21 GMT",
+            "x-amzn-requestid": "784c117d-8905-427a-9ad4-2386aa98c401"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "784c117d-8905-427a-9ad4-2386aa98c401",
+        "RetryAttempts": 0
+    },
+    "Role": {
+        "Arn": "arn:aws:iam::846382335153:role/anh-lambda-role",
+        "AssumeRolePolicyDocument": {
+            "Statement": [
+                {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "lambda.amazonaws.com"
+                    }
+                }
+            ],
+            "Version": "2012-10-17"
+        },
+        "CreateDate": "2020-08-31 13:40:22+00:00",
+        "Path": "/",
+        "RoleId": "AROA4KECRQSY23ZBUVJTT",
+        "RoleName": "anh-lambda-role"
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:40:22 - :Attaching Lambda policy to Lambda Role: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "212",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:40:21 GMT",
+            "x-amzn-requestid": "0aec4520-2459-4f8e-bb53-ae6a21e9c972"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "0aec4520-2459-4f8e-bb53-ae6a21e9c972",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:40:34 - :Creating Lambda function PostReader_NewPosts: =======================================
+{
+    "CodeSha256": "TkfBFh9oGUuePcfsVoEDzVgfnip0srkIeSOY0C4tw0s=",
+    "CodeSize": 982,
+    "Description": "this function inserts data info dynamodb table called posts",
+    "Environment": {
+        "Variables": {
+            "DB_TABLE_NAME": "AnhPollyProject",
+            "SNS_TOPIC": "arn:aws:sns:us-east-1:846382335153:anh_polly_events"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_NewPosts",
+    "FunctionName": "PostReader_NewPosts",
+    "Handler": "createpost.lambda_handler",
+    "LastModified": "2020-08-31T13:40:34.205+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "1041",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:40:34 GMT",
+            "x-amzn-requestid": "1b31c51b-6658-4a45-834d-15fb7a382cdf"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "1b31c51b-6658-4a45-834d-15fb7a382cdf",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "63dd9036-c68f-43f1-9ca4-5139fadb60a3",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:40:45 - :Creating Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "CodeSha256": "XviqP6YZxx829xhKnDBjH5qkNfRnv29DhRU6rMea/Mg=",
+    "CodeSize": 3102,
+    "Description": "This function converts the text from s3 to polly mp3",
+    "Environment": {
+        "Variables": {
+            "BUCKET_NAME": "anh-pollybucket-out",
+            "DB_TABLE_NAME": "AnhPollyProject"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio",
+    "FunctionName": "PostReader_ConvertToAudio",
+    "Handler": "convertoaudio.lambda_handler",
+    "LastModified": "2020-08-31T13:40:45.477+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "1020",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:40:45 GMT",
+            "x-amzn-requestid": "032f57fe-fb87-42de-a79b-4afeb333c7e7"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "032f57fe-fb87-42de-a79b-4afeb333c7e7",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "6ac5a50f-ec05-412a-b74c-cd02f44ceb25",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:40:56 - :Creating Lambda function PostReader_GetPosts: =======================================
+{
+    "CodeSha256": "aV79D1YwJtgjSbsXZtIGoeMGokGNOBtwrpxeMcpYH/4=",
+    "CodeSize": 555,
+    "Description": "This function converts the text from s3 to polly mp3",
+    "Environment": {
+        "Variables": {
+            "DB_TABLE_NAME": "AnhPollyProject"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_GetPosts",
+    "FunctionName": "PostReader_GetPosts",
+    "Handler": "getposts.lambda_handler",
+    "LastModified": "2020-08-31T13:40:56.742+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "966",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:40:56 GMT",
+            "x-amzn-requestid": "4926e05b-7695-42d2-acf4-70357899f4c9"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "4926e05b-7695-42d2-acf4-70357899f4c9",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "eff0f90c-355c-4939-b5a1-e7b3320d286e",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:07 - :Adding IAM permission for SNS to invoke Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "362",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:07 GMT",
+            "x-amzn-requestid": "128e6ad3-fba4-4720-b1ea-b67e57f0ffc3"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "128e6ad3-fba4-4720-b1ea-b67e57f0ffc3",
+        "RetryAttempts": 0
+    },
+    "Statement": "{\"Sid\":\"lambda-policy-for-sns-invoke-1\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"sns.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:sns:us-east-1:846382335153:anh_polly_events\"}}}"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:08 - :Adding SNS subscription for Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "366",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 13:41:07 GMT",
+            "x-amzn-requestid": "514c8eb0-72c0-536a-9fd1-d97772f373ad"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "514c8eb0-72c0-536a-9fd1-d97772f373ad",
+        "RetryAttempts": 0
+    },
+    "SubscriptionArn": "arn:aws:sns:us-east-1:846382335153:anh_polly_events:c1c28ff1-01e8-4d19-bdcd-702534d0b65f"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:19 - :Creating new REST API : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "230",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:19 GMT",
+            "x-amz-apigw-id": "SIyf2IiZoAMEd2w=",
+            "x-amzn-requestid": "0ff67ba7-39fc-4e77-a68b-6b4b5fbdf74b"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "0ff67ba7-39fc-4e77-a68b-6b4b5fbdf74b",
+        "RetryAttempts": 0
+    },
+    "apiKeySource": "HEADER",
+    "createdDate": "2020-08-31 13:41:19+00:00",
+    "description": "My Lambda Polly API",
+    "endpointConfiguration": {
+        "types": [
+            "REGIONAL"
+        ]
+    },
+    "id": "5x7qjcntbe",
+    "name": "AnhServerLessPollyAPI"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:30 - :Creating GET Method for REST API: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "135",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:30 GMT",
+            "x-amz-apigw-id": "SIyhnLazIAMEdWA=",
+            "x-amzn-requestid": "1bd80740-18f5-4d8c-bdc8-e9e49a5b4f0a"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "1bd80740-18f5-4d8c-bdc8-e9e49a5b4f0a",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "GET",
+    "requestParameters": {
+        "method.request.querystring.postId": false
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:30 - :Creating integration for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "437",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:30 GMT",
+            "x-amz-apigw-id": "SIyhpLEpoAMEdUw=",
+            "x-amzn-requestid": "59401883-5e22-42b0-bb59-c68b1d8e3dcb"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "59401883-5e22-42b0-bb59-c68b1d8e3dcb",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "zvmaihnltg",
+    "contentHandling": "CONVERT_TO_TEXT",
+    "httpMethod": "POST",
+    "passthroughBehavior": "WHEN_NO_TEMPLATES",
+    "requestTemplates": {
+        "application/json": "{\r\n    \"postId\" : \"$input.params('postId')\"\r\n}"
+    },
+    "timeoutInMillis": 29000,
+    "type": "AWS",
+    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:846382335153:function:PostReader_GetPosts/invocations"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:30 - :Creating method response for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:30 GMT",
+            "x-amz-apigw-id": "SIyhqJdBIAMEdvw=",
+            "x-amzn-requestid": "973c8f4a-9435-4be9-9e1e-19e815aef952"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "973c8f4a-9435-4be9-9e1e-19e815aef952",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:30 - :Creating integration method response for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "185",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:30 GMT",
+            "x-amz-apigw-id": "SIyhqIjkoAMEd2w=",
+            "x-amzn-requestid": "7c2c07aa-26d1-4a12-b70f-85736de39aa4"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "7c2c07aa-26d1-4a12-b70f-85736de39aa4",
+        "RetryAttempts": 0
+    },
+    "contentHandling": "CONVERT_TO_TEXT",
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": null
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:31 - :Creating POST method for API : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "95",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:31 GMT",
+            "x-amz-apigw-id": "SIyhvJ3vIAMEbLA=",
+            "x-amzn-requestid": "caa943e8-3665-4535-9607-7257abae19fc"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "caa943e8-3665-4535-9607-7257abae19fc",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "POST",
+    "requestParameters": {}
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:31 - :Creating method response for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:31 GMT",
+            "x-amz-apigw-id": "SIyhvIrIIAMEbRg=",
+            "x-amzn-requestid": "a073d99b-055d-4b3c-a979-96035b070390"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "a073d99b-055d-4b3c-a979-96035b070390",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:31 - :Creating method integration for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "336",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:31 GMT",
+            "x-amz-apigw-id": "SIyhwK-woAMEd1w=",
+            "x-amzn-requestid": "974707e7-6a22-450a-a871-d4f7b9f89204"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "974707e7-6a22-450a-a871-d4f7b9f89204",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "zvmaihnltg",
+    "contentHandling": "CONVERT_TO_TEXT",
+    "httpMethod": "POST",
+    "passthroughBehavior": "WHEN_NO_MATCH",
+    "timeoutInMillis": 29000,
+    "type": "AWS",
+    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:846382335153:function:PostReader_NewPosts/invocations"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:31 - :Creating method integration response for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:31 GMT",
+            "x-amz-apigw-id": "SIyhxLQWIAMEdeg=",
+            "x-amzn-requestid": "3cddfd45-6d7b-45b1-a8fc-1a5c2d136970"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "3cddfd45-6d7b-45b1-a8fc-1a5c2d136970",
+        "RetryAttempts": 0
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": null
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:31 - :Creating OPTIONS Method for CORS : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "75",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:31 GMT",
+            "x-amz-apigw-id": "SIyh1IdFoAMEbPA=",
+            "x-amzn-requestid": "dd6afaea-7b26-4b24-8062-62efb3334d16"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "dd6afaea-7b26-4b24-8062-62efb3334d16",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "OPTIONS"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:31 - :Creating OPTIONS Method response for CORS : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "269",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:31 GMT",
+            "x-amz-apigw-id": "SIyh2KHDIAMEd5A=",
+            "x-amzn-requestid": "e06f5a69-c512-4a63-9b8d-9bbe83e7ba23"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "e06f5a69-c512-4a63-9b8d-9bbe83e7ba23",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": false,
+        "method.response.header.Access-Control-Allow-Methods": false,
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:31 - :Creating OPTIONS integration for OPTIONS method: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "196",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:31 GMT",
+            "x-amz-apigw-id": "SIyh2I4AoAMEclA=",
+            "x-amzn-requestid": "3b1a70c6-097d-4e35-8be3-6aa3166d2538"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "3b1a70c6-097d-4e35-8be3-6aa3166d2538",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "zvmaihnltg",
+    "passthroughBehavior": "WHEN_NO_MATCH",
+    "requestTemplates": {
+        "application/json": "{\"statusCode\": 200}"
+    },
+    "timeoutInMillis": 29000,
+    "type": "MOCK"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:31 - :Creating OPTIONS integration response and CORS Headers: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "370",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:31 GMT",
+            "x-amz-apigw-id": "SIyh3IbxIAMEbTw=",
+            "x-amzn-requestid": "2bb2d106-afcf-400e-a0e6-e43e9450cd43"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "2bb2d106-afcf-400e-a0e6-e43e9450cd43",
+        "RetryAttempts": 0
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Methods": "'POST,GET,OPTIONS'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": "{\"statusCode\": 200}"
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:42 - :Creating new Deployment: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "83",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:42 GMT",
+            "x-amz-apigw-id": "SIyjgKH7IAMEd5A=",
+            "x-amzn-requestid": "894a32fa-83ad-4fc5-932d-d9e3baa1aa19"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "894a32fa-83ad-4fc5-932d-d9e3baa1aa19",
+        "RetryAttempts": 0
+    },
+    "createdDate": "2020-08-31 13:41:42+00:00",
+    "description": "Polly development gateway",
+    "id": "aalx13"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:42 - :Updating Deployment STAGE for throttles: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "554",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:42 GMT",
+            "x-amz-apigw-id": "SIyjkJl9IAMEdcA=",
+            "x-amzn-requestid": "32b62ad0-1bc0-473a-823c-66724ea91390"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "32b62ad0-1bc0-473a-823c-66724ea91390",
+        "RetryAttempts": 0
+    },
+    "cacheClusterEnabled": false,
+    "cacheClusterStatus": "NOT_AVAILABLE",
+    "createdDate": "2020-08-31 13:41:42+00:00",
+    "deploymentId": "aalx13",
+    "description": "Polly development gateway",
+    "lastUpdatedDate": "2020-08-31 13:41:42+00:00",
+    "methodSettings": {
+        "*/*": {
+            "cacheDataEncrypted": false,
+            "cacheTtlInSeconds": 300,
+            "cachingEnabled": false,
+            "dataTraceEnabled": false,
+            "metricsEnabled": false,
+            "requireAuthorizationForCacheControl": true,
+            "throttlingBurstLimit": 5,
+            "throttlingRateLimit": 2.0,
+            "unauthorizedCacheControlHeaderStrategy": "SUCCEED_WITH_RESPONSE_HEADER"
+        }
+    },
+    "stageName": "Anhdevelopment",
+    "tracingEnabled": false
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_13:41:53 - :Adding Lambda invoke permission for API Gateway: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "399",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 13:41:53 GMT",
+            "x-amzn-requestid": "6a4c6ab7-9cea-400a-bbf7-8014048c66c9"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "6a4c6ab7-9cea-400a-bbf7-8014048c66c9",
+        "RetryAttempts": 0
+    },
+    "Statement": "{\"Sid\":\"apigateway-lambda-invoke-perms-PostReader_ConvertToAudio\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"apigateway.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:execute-api:us-east-1:846382335153:5x7qjcntbe/*\"}}}"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:14:45 - :Adding scripts.js to S3 bucket anh-pollybucket-in: =======================================
+{
+    "ETag": "\"c72383c1affd9b976b8f9410ff9a3f4c\"",
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "0",
+            "date": "Mon, 31 Aug 2020 14:14:46 GMT",
+            "etag": "\"c72383c1affd9b976b8f9410ff9a3f4c\"",
+            "server": "AmazonS3",
+            "x-amz-id-2": "HgremXlvO+5AGpX87pMKqPHOJi2aoMFMcVmYvIjFxSkWHRk8RfiWR7FDGTQO16tw6UxS2FNnH1U=",
+            "x-amz-request-id": "927C636B1F33983F"
+        },
+        "HTTPStatusCode": 200,
+        "HostId": "HgremXlvO+5AGpX87pMKqPHOJi2aoMFMcVmYvIjFxSkWHRk8RfiWR7FDGTQO16tw6UxS2FNnH1U=",
+        "RequestId": "927C636B1F33983F",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:14:45 - :Adding styles.css to S3 bucket anh-pollybucket-in: =======================================
+{
+    "ETag": "\"110dbab1b50144c12f104a2548de4de0\"",
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "0",
+            "date": "Mon, 31 Aug 2020 14:14:46 GMT",
+            "etag": "\"110dbab1b50144c12f104a2548de4de0\"",
+            "server": "AmazonS3",
+            "x-amz-id-2": "v1JGLDlSqbQEsdXhKyqeqElS/qcuzkl8KRA9DdtcRrUBCJ6blj1+JMP6kHKAa/MBPgbJ4G30eb0=",
+            "x-amz-request-id": "773D3513E5167891"
+        },
+        "HTTPStatusCode": 200,
+        "HostId": "v1JGLDlSqbQEsdXhKyqeqElS/qcuzkl8KRA9DdtcRrUBCJ6blj1+JMP6kHKAa/MBPgbJ4G30eb0=",
+        "RequestId": "773D3513E5167891",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:14:45 - :Adding index.html to S3 bucket anh-pollybucket-in: =======================================
+{
+    "ETag": "\"d6fba74d81021e652c324b5d952d0281\"",
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "0",
+            "date": "Mon, 31 Aug 2020 14:14:46 GMT",
+            "etag": "\"d6fba74d81021e652c324b5d952d0281\"",
+            "server": "AmazonS3",
+            "x-amz-id-2": "6zfxnh/b1HqYXN88+962MhX/CKvIGESWkc0uI2aKBCFm5ZGUspz4B7OkFFo4gnvRb0unlzC6/os=",
+            "x-amz-request-id": "FD99CA662BF92685"
+        },
+        "HTTPStatusCode": 200,
+        "HostId": "6zfxnh/b1HqYXN88+962MhX/CKvIGESWkc0uI2aKBCFm5ZGUspz4B7OkFFo4gnvRb0unlzC6/os=",
+        "RequestId": "FD99CA662BF92685",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:23:49 - :Deleting dynamodb Table: =======================================
+"AnhPollyProject"
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:23:49 - :Deleting bucket objects: =======================================
+[
+    {
+        "Deleted": [
+            {
+                "Key": "styles.css"
+            },
+            {
+                "Key": "scripts.js"
+            },
+            {
+                "Key": "index.html"
+            }
+        ],
+        "ResponseMetadata": {
+            "HTTPHeaders": {
+                "connection": "close",
+                "content-type": "application/xml",
+                "date": "Mon, 31 Aug 2020 14:23:50 GMT",
+                "server": "AmazonS3",
+                "transfer-encoding": "chunked",
+                "x-amz-id-2": "yvbm4e0CTbjdwtpPiwcDbbs5qGNIsgZ/Rg+OdA43BuS666mkt9FmIDohONoNrTmZHnF8Ngla23k=",
+                "x-amz-request-id": "B2145FFA4A7F129E"
+            },
+            "HTTPStatusCode": 200,
+            "HostId": "yvbm4e0CTbjdwtpPiwcDbbs5qGNIsgZ/Rg+OdA43BuS666mkt9FmIDohONoNrTmZHnF8Ngla23k=",
+            "RequestId": "B2145FFA4A7F129E",
+            "RetryAttempts": 0
+        }
+    }
+]
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:23:49 - :Deleting buckets: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 14:23:50 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "mfF4pMxltVLvmzDJkumZui6bvOpVqPri5cLXWYSiD1cPhlnSxPLtCuMu5a9EsQ1N1byyg1YFBko=",
+            "x-amz-request-id": "8EA381A8EBFF63AF"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "mfF4pMxltVLvmzDJkumZui6bvOpVqPri5cLXWYSiD1cPhlnSxPLtCuMu5a9EsQ1N1byyg1YFBko=",
+        "RequestId": "8EA381A8EBFF63AF",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:23:49 - :Deleting bucket objects: =======================================
+[]
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:23:50 - :Deleting buckets: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 14:23:50 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "g0+AqKs+6TNL0px1VhopIuf6N5T6gDqFkdrm99TnEqK/M/QxK1cK02U75sInXEAKtG2jC4u4dsE=",
+            "x-amz-request-id": "2W6P3SCV4SEPAZ2M"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "g0+AqKs+6TNL0px1VhopIuf6N5T6gDqFkdrm99TnEqK/M/QxK1cK02U75sInXEAKtG2jC4u4dsE=",
+        "RequestId": "2W6P3SCV4SEPAZ2M",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:23:50 - :Deleting SNS topic: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "201",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 14:23:50 GMT",
+            "x-amzn-requestid": "8377648f-9a63-554f-bb55-3348905521a6"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "8377648f-9a63-554f-bb55-3348905521a6",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:30:39 - :Creating new dynamodb Table: =======================================
+"dynamodb.Table(name='AnhPollyProject')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:30:39 - :Creating new S3 buckets: =======================================
+"s3.Bucket(name='anh-pollybucket-in')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:30:39 - :Creating new S3 buckets: =======================================
+"s3.Bucket(name='anh-pollybucket-out')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:30:40 - :Updating bucket policies: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 14:30:41 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "jBbQ9ANXbnSW+K9hqfJsAXN8//mcJHcXt49HYM7vBUDXfptksUEnsJGYK5v7WVXF5R28DfsoMZw=",
+            "x-amz-request-id": "B277341C4EF4F9E8"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "jBbQ9ANXbnSW+K9hqfJsAXN8//mcJHcXt49HYM7vBUDXfptksUEnsJGYK5v7WVXF5R28DfsoMZw=",
+        "RequestId": "B277341C4EF4F9E8",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:30:40 - :Updating bucket policies: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 14:30:41 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "fnNINqurDL+dF29rVQQdIXlKBaXEftIedAr4D7H6Sqt5YcRWJbOFTT1W0K1Y2nAnPKtMJzmkFvw=",
+            "x-amz-request-id": "DC58A4A3BD49C62F"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "fnNINqurDL+dF29rVQQdIXlKBaXEftIedAr4D7H6Sqt5YcRWJbOFTT1W0K1Y2nAnPKtMJzmkFvw=",
+        "RequestId": "DC58A4A3BD49C62F",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:30:41 - :Creating new SNS topic: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "323",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 14:30:40 GMT",
+            "x-amzn-requestid": "a3f9d623-8fb3-5d72-b24d-81e484639c76"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "a3f9d623-8fb3-5d72-b24d-81e484639c76",
+        "RetryAttempts": 0
+    },
+    "TopicArn": "arn:aws:sns:us-east-1:846382335153:anh_polly_events"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:30:52 - :Creating new IAM Policy for Lambda to access s3,sns,polly,dynamodb,logs: =======================================
+{
+    "Policy": {
+        "Arn": "arn:aws:iam::846382335153:policy/anh-lambda-policy",
+        "AttachmentCount": 0,
+        "CreateDate": "2020-08-31 14:30:52+00:00",
+        "DefaultVersionId": "v1",
+        "IsAttachable": true,
+        "Path": "/",
+        "PermissionsBoundaryUsageCount": 0,
+        "PolicyId": "ANPA4KECRQSY3W3MVEWI7",
+        "PolicyName": "anh-lambda-policy",
+        "UpdateDate": "2020-08-31 14:30:52+00:00"
+    },
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "769",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 14:30:51 GMT",
+            "x-amzn-requestid": "4e24ae61-83de-422d-acba-964a04bf796e"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "4e24ae61-83de-422d-acba-964a04bf796e",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:30:52 - :Creating new Lambda Role: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "784",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 14:30:51 GMT",
+            "x-amzn-requestid": "e37fc2f0-188a-4f2f-8824-6cb9f86149bc"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "e37fc2f0-188a-4f2f-8824-6cb9f86149bc",
+        "RetryAttempts": 0
+    },
+    "Role": {
+        "Arn": "arn:aws:iam::846382335153:role/anh-lambda-role",
+        "AssumeRolePolicyDocument": {
+            "Statement": [
+                {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "lambda.amazonaws.com"
+                    }
+                }
+            ],
+            "Version": "2012-10-17"
+        },
+        "CreateDate": "2020-08-31 14:30:52+00:00",
+        "Path": "/",
+        "RoleId": "AROA4KECRQSY6DT2R3ATT",
+        "RoleName": "anh-lambda-role"
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:30:52 - :Attaching Lambda policy to Lambda Role: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "212",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 14:30:51 GMT",
+            "x-amzn-requestid": "62e7d2ad-fa29-4d1a-a652-ba8a6dcdeed2"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "62e7d2ad-fa29-4d1a-a652-ba8a6dcdeed2",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:31:05 - :Creating Lambda function PostReader_NewPosts: =======================================
+{
+    "CodeSha256": "TkfBFh9oGUuePcfsVoEDzVgfnip0srkIeSOY0C4tw0s=",
+    "CodeSize": 982,
+    "Description": "this function inserts data info dynamodb table called posts",
+    "Environment": {
+        "Variables": {
+            "DB_TABLE_NAME": "AnhPollyProject",
+            "SNS_TOPIC": "arn:aws:sns:us-east-1:846382335153:anh_polly_events"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_NewPosts",
+    "FunctionName": "PostReader_NewPosts",
+    "Handler": "createpost.lambda_handler",
+    "LastModified": "2020-08-31T14:31:05.161+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "1041",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:31:05 GMT",
+            "x-amzn-requestid": "7bd9d54f-5886-49b8-a65e-811438e04c90"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "7bd9d54f-5886-49b8-a65e-811438e04c90",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "d96b50c4-e087-45f8-a196-88cca02c5e1f",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:31:16 - :Creating Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "CodeSha256": "XviqP6YZxx829xhKnDBjH5qkNfRnv29DhRU6rMea/Mg=",
+    "CodeSize": 3102,
+    "Description": "This function converts the text from s3 to polly mp3",
+    "Environment": {
+        "Variables": {
+            "BUCKET_NAME": "anh-pollybucket-out",
+            "DB_TABLE_NAME": "AnhPollyProject"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio",
+    "FunctionName": "PostReader_ConvertToAudio",
+    "Handler": "convertoaudio.lambda_handler",
+    "LastModified": "2020-08-31T14:31:16.347+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "1020",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:31:16 GMT",
+            "x-amzn-requestid": "d91bfb6c-69fa-4b31-99bb-f70e5c95a0a2"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "d91bfb6c-69fa-4b31-99bb-f70e5c95a0a2",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "fbc345ae-49a0-4bc9-b9bb-c7ff2f551556",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:31:27 - :Creating Lambda function PostReader_GetPosts: =======================================
+{
+    "CodeSha256": "aV79D1YwJtgjSbsXZtIGoeMGokGNOBtwrpxeMcpYH/4=",
+    "CodeSize": 555,
+    "Description": "This function converts the text from s3 to polly mp3",
+    "Environment": {
+        "Variables": {
+            "DB_TABLE_NAME": "AnhPollyProject"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_GetPosts",
+    "FunctionName": "PostReader_GetPosts",
+    "Handler": "getposts.lambda_handler",
+    "LastModified": "2020-08-31T14:31:27.506+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "966",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:31:27 GMT",
+            "x-amzn-requestid": "7f859207-e935-40a6-9824-2c232fba8a93"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "7f859207-e935-40a6-9824-2c232fba8a93",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "e751527c-fb24-4b87-907f-ca2a5d37157d",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:31:38 - :Adding IAM permission for SNS to invoke Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "362",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:31:38 GMT",
+            "x-amzn-requestid": "5f14a38e-6c32-4430-8ab1-2e1756bd4402"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "5f14a38e-6c32-4430-8ab1-2e1756bd4402",
+        "RetryAttempts": 0
+    },
+    "Statement": "{\"Sid\":\"lambda-policy-for-sns-invoke-1\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"sns.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:sns:us-east-1:846382335153:anh_polly_events\"}}}"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:31:38 - :Adding SNS subscription for Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "366",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 14:31:38 GMT",
+            "x-amzn-requestid": "6df77e59-464b-58f3-8d7e-299e4a410518"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "6df77e59-464b-58f3-8d7e-299e4a410518",
+        "RetryAttempts": 0
+    },
+    "SubscriptionArn": "arn:aws:sns:us-east-1:846382335153:anh_polly_events:1631dbf2-e836-4c02-ba2a-a01b886a2cb3"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:31:50 - :Creating new REST API : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "230",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:31:50 GMT",
+            "x-amz-apigw-id": "SI55bIIhIAMEdMQ=",
+            "x-amzn-requestid": "4c088a33-3bb7-45a3-9757-8eaf132c748c"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "4c088a33-3bb7-45a3-9757-8eaf132c748c",
+        "RetryAttempts": 0
+    },
+    "apiKeySource": "HEADER",
+    "createdDate": "2020-08-31 14:31:49+00:00",
+    "description": "My Lambda Polly API",
+    "endpointConfiguration": {
+        "types": [
+            "REGIONAL"
+        ]
+    },
+    "id": "4n9zsfkww0",
+    "name": "AnhServerLessPollyAPI"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:01 - :Creating GET Method for REST API: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "135",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:01 GMT",
+            "x-amz-apigw-id": "SI57LLoCIAMEdyw=",
+            "x-amzn-requestid": "1b9ba8af-5d3c-4a68-a09a-ce5a30d0619f"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "1b9ba8af-5d3c-4a68-a09a-ce5a30d0619f",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "GET",
+    "requestParameters": {
+        "method.request.querystring.postId": false
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:01 - :Creating integration for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "437",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:01 GMT",
+            "x-amz-apigw-id": "SI57MJMCoAMEdnw=",
+            "x-amzn-requestid": "4dbf5f76-53ad-402e-ad9c-052dadcdc92b"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "4dbf5f76-53ad-402e-ad9c-052dadcdc92b",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "a5fn21d9e2",
+    "contentHandling": "CONVERT_TO_TEXT",
+    "httpMethod": "POST",
+    "passthroughBehavior": "WHEN_NO_TEMPLATES",
+    "requestTemplates": {
+        "application/json": "{\r\n    \"postId\" : \"$input.params('postId')\"\r\n}"
+    },
+    "timeoutInMillis": 29000,
+    "type": "AWS",
+    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:846382335153:function:PostReader_GetPosts/invocations"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:01 - :Creating method response for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:01 GMT",
+            "x-amz-apigw-id": "SI57NIOUIAMEbhw=",
+            "x-amzn-requestid": "d53858ca-1321-4a2c-9cae-6c386c720a8f"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "d53858ca-1321-4a2c-9cae-6c386c720a8f",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:01 - :Creating integration method response for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "185",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:01 GMT",
+            "x-amz-apigw-id": "SI57NLEQIAMEcFQ=",
+            "x-amzn-requestid": "057767df-add8-48b0-9089-2505a6f22fef"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "057767df-add8-48b0-9089-2505a6f22fef",
+        "RetryAttempts": 0
+    },
+    "contentHandling": "CONVERT_TO_TEXT",
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": null
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:01 - :Creating POST method for API : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "95",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:01 GMT",
+            "x-amz-apigw-id": "SI57SLAfIAMEcbA=",
+            "x-amzn-requestid": "a35f1719-435c-4a97-a300-fe398dbfd0e9"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "a35f1719-435c-4a97-a300-fe398dbfd0e9",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "POST",
+    "requestParameters": {}
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:01 - :Creating method response for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:01 GMT",
+            "x-amz-apigw-id": "SI57TK7voAMEc9A=",
+            "x-amzn-requestid": "4674c0be-3696-44db-9071-cd2a0965f4c1"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "4674c0be-3696-44db-9071-cd2a0965f4c1",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:02 - :Creating method integration for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "336",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:02 GMT",
+            "x-amz-apigw-id": "SI57VL5QoAMEbNw=",
+            "x-amzn-requestid": "56e47845-607a-48ee-8a1e-89188ae4f0e5"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "56e47845-607a-48ee-8a1e-89188ae4f0e5",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "a5fn21d9e2",
+    "contentHandling": "CONVERT_TO_TEXT",
+    "httpMethod": "POST",
+    "passthroughBehavior": "WHEN_NO_MATCH",
+    "timeoutInMillis": 29000,
+    "type": "AWS",
+    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:846382335153:function:PostReader_NewPosts/invocations"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:02 - :Creating method integration response for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:02 GMT",
+            "x-amz-apigw-id": "SI57WKnkoAMEbRg=",
+            "x-amzn-requestid": "840ab222-7b0e-41ba-b303-7fadf291108b"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "840ab222-7b0e-41ba-b303-7fadf291108b",
+        "RetryAttempts": 0
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": null
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:02 - :Creating OPTIONS Method for CORS : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "75",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:02 GMT",
+            "x-amz-apigw-id": "SI57bK74oAMEc9A=",
+            "x-amzn-requestid": "5462266d-07d6-4d5a-84cd-06e84f950641"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "5462266d-07d6-4d5a-84cd-06e84f950641",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "OPTIONS"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:02 - :Creating OPTIONS Method response for CORS : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "269",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:02 GMT",
+            "x-amz-apigw-id": "SI57cKFUIAMEcuA=",
+            "x-amzn-requestid": "96d7d5a7-18b0-4f25-a337-024140138e5e"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "96d7d5a7-18b0-4f25-a337-024140138e5e",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": false,
+        "method.response.header.Access-Control-Allow-Methods": false,
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:02 - :Creating OPTIONS integration for OPTIONS method: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "196",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:02 GMT",
+            "x-amz-apigw-id": "SI57cKntIAMEbRg=",
+            "x-amzn-requestid": "3f9890dc-73c3-4a1c-9119-c1e6a2af6bfa"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "3f9890dc-73c3-4a1c-9119-c1e6a2af6bfa",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "a5fn21d9e2",
+    "passthroughBehavior": "WHEN_NO_MATCH",
+    "requestTemplates": {
+        "application/json": "{\"statusCode\": 200}"
+    },
+    "timeoutInMillis": 29000,
+    "type": "MOCK"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:02 - :Creating OPTIONS integration response and CORS Headers: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "370",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:02 GMT",
+            "x-amz-apigw-id": "SI57dI7vIAMEd1w=",
+            "x-amzn-requestid": "ecbf0c3f-2732-4934-a4a2-f5623c6b230c"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "ecbf0c3f-2732-4934-a4a2-f5623c6b230c",
+        "RetryAttempts": 0
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Methods": "'POST,GET,OPTIONS'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": "{\"statusCode\": 200}"
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:13 - :Creating new Deployment: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "83",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:13 GMT",
+            "x-amz-apigw-id": "SI59FKpgoAMEbRg=",
+            "x-amzn-requestid": "f4314263-b18f-46e1-82c9-708bcdbd64ac"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "f4314263-b18f-46e1-82c9-708bcdbd64ac",
+        "RetryAttempts": 0
+    },
+    "createdDate": "2020-08-31 14:32:13+00:00",
+    "description": "Polly development gateway",
+    "id": "i0b029"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:14 - :Updating Deployment STAGE for throttles: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "554",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:14 GMT",
+            "x-amz-apigw-id": "SI59LLGeIAMEcFQ=",
+            "x-amzn-requestid": "887522df-bcff-4fbf-a734-a93eda0e2719"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "887522df-bcff-4fbf-a734-a93eda0e2719",
+        "RetryAttempts": 0
+    },
+    "cacheClusterEnabled": false,
+    "cacheClusterStatus": "NOT_AVAILABLE",
+    "createdDate": "2020-08-31 14:32:13+00:00",
+    "deploymentId": "i0b029",
+    "description": "Polly development gateway",
+    "lastUpdatedDate": "2020-08-31 14:32:13+00:00",
+    "methodSettings": {
+        "*/*": {
+            "cacheDataEncrypted": false,
+            "cacheTtlInSeconds": 300,
+            "cachingEnabled": false,
+            "dataTraceEnabled": false,
+            "metricsEnabled": false,
+            "requireAuthorizationForCacheControl": true,
+            "throttlingBurstLimit": 5,
+            "throttlingRateLimit": 2.0,
+            "unauthorizedCacheControlHeaderStrategy": "SUCCEED_WITH_RESPONSE_HEADER"
+        }
+    },
+    "stageName": "Anhdevelopment",
+    "tracingEnabled": false
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_14:32:24 - :Adding Lambda invoke permission for API Gateway: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "399",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 14:32:24 GMT",
+            "x-amzn-requestid": "cc3472ee-d14c-47d7-86bf-4e7dfb73cd31"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "cc3472ee-d14c-47d7-86bf-4e7dfb73cd31",
+        "RetryAttempts": 0
+    },
+    "Statement": "{\"Sid\":\"apigateway-lambda-invoke-perms-PostReader_ConvertToAudio\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"apigateway.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:execute-api:us-east-1:846382335153:4n9zsfkww0/*\"}}}"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:31:29 - :Deleting dynamodb Table: =======================================
+"AnhPollyProject"
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:31:29 - :Deleting bucket objects: =======================================
+[]
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:31:29 - :Deleting buckets: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 15:31:30 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "j4Rb+Qbqs730qTNR7tr36fTP2qOafACbvSO6+9EarVtqDlQLJFF6N48E0+KfTdY9mAtKj4GqG7o=",
+            "x-amz-request-id": "6DECED408D772076"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "j4Rb+Qbqs730qTNR7tr36fTP2qOafACbvSO6+9EarVtqDlQLJFF6N48E0+KfTdY9mAtKj4GqG7o=",
+        "RequestId": "6DECED408D772076",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:31:29 - :Deleting bucket objects: =======================================
+[]
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:31:29 - :Deleting buckets: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 15:31:30 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "+J8EmgOH5i+uAx2uGo9v1fysWyjNvJVOGvwEpnQS8YWW829vnLGlUsLKpq8buS3NksHdP1o7OBg=",
+            "x-amz-request-id": "BWEH6K1VDM3G7YBG"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "+J8EmgOH5i+uAx2uGo9v1fysWyjNvJVOGvwEpnQS8YWW829vnLGlUsLKpq8buS3NksHdP1o7OBg=",
+        "RequestId": "BWEH6K1VDM3G7YBG",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:31:30 - :Deleting SNS topic: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "201",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 15:31:29 GMT",
+            "x-amzn-requestid": "2bf2b1b1-c623-5e93-8fc0-e676dc316cde"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "2bf2b1b1-c623-5e93-8fc0-e676dc316cde",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:34:28 - :Creating new dynamodb Table: =======================================
+"dynamodb.Table(name='AnhPollyProject')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:34:29 - :Creating new S3 buckets: =======================================
+"s3.Bucket(name='anh-pollybucket-in')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:34:29 - :Creating new S3 buckets: =======================================
+"s3.Bucket(name='anh-pollybucket-out')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:34:29 - :Updating bucket policies: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 15:34:30 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "sdcMDWo0o6XmzlTw5o5fQaVoG7J7C8UdHrvY6VmpcA/0rk2GqJcFGBHlOJb2LMdaFAGWnXG3fHw=",
+            "x-amz-request-id": "EE4286D68AB76C04"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "sdcMDWo0o6XmzlTw5o5fQaVoG7J7C8UdHrvY6VmpcA/0rk2GqJcFGBHlOJb2LMdaFAGWnXG3fHw=",
+        "RequestId": "EE4286D68AB76C04",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:34:30 - :Updating bucket policies: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 15:34:30 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "XPWKNmqD9bfyOHldsiupPfA9+YwjyBNIYwHhyDv4xWeydbiOrOM6HQ3zuppt8fERo3x9zDCiG2Q=",
+            "x-amz-request-id": "09415702599EAF09"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "XPWKNmqD9bfyOHldsiupPfA9+YwjyBNIYwHhyDv4xWeydbiOrOM6HQ3zuppt8fERo3x9zDCiG2Q=",
+        "RequestId": "09415702599EAF09",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:34:30 - :Creating new SNS topic: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "323",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 15:34:29 GMT",
+            "x-amzn-requestid": "1055703c-1219-5c04-9dd5-27fb08dffe6c"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "1055703c-1219-5c04-9dd5-27fb08dffe6c",
+        "RetryAttempts": 0
+    },
+    "TopicArn": "arn:aws:sns:us-east-1:846382335153:anh_polly_events"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:34:41 - :Creating new IAM Policy for Lambda to access s3,sns,polly,dynamodb,logs: =======================================
+{
+    "Policy": {
+        "Arn": "arn:aws:iam::846382335153:policy/anh-lambda-policy",
+        "AttachmentCount": 0,
+        "CreateDate": "2020-08-31 15:34:41+00:00",
+        "DefaultVersionId": "v1",
+        "IsAttachable": true,
+        "Path": "/",
+        "PermissionsBoundaryUsageCount": 0,
+        "PolicyId": "ANPA4KECRQSY4OPPYCLKK",
+        "PolicyName": "anh-lambda-policy",
+        "UpdateDate": "2020-08-31 15:34:41+00:00"
+    },
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "769",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 15:34:40 GMT",
+            "x-amzn-requestid": "d8c30dd9-1d80-444b-a903-8779a9e20e43"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "d8c30dd9-1d80-444b-a903-8779a9e20e43",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:34:41 - :Creating new Lambda Role: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "784",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 15:34:40 GMT",
+            "x-amzn-requestid": "eb524396-6479-499b-84e6-7bfc09e0ac38"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "eb524396-6479-499b-84e6-7bfc09e0ac38",
+        "RetryAttempts": 0
+    },
+    "Role": {
+        "Arn": "arn:aws:iam::846382335153:role/anh-lambda-role",
+        "AssumeRolePolicyDocument": {
+            "Statement": [
+                {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "lambda.amazonaws.com"
+                    }
+                }
+            ],
+            "Version": "2012-10-17"
+        },
+        "CreateDate": "2020-08-31 15:34:41+00:00",
+        "Path": "/",
+        "RoleId": "AROA4KECRQSYRZGUXJD2M",
+        "RoleName": "anh-lambda-role"
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:34:41 - :Attaching Lambda policy to Lambda Role: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "212",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 15:34:40 GMT",
+            "x-amzn-requestid": "c230fc70-a524-47bd-98d2-6095000ef99b"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "c230fc70-a524-47bd-98d2-6095000ef99b",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:34:53 - :Creating Lambda function PostReader_NewPosts: =======================================
+{
+    "CodeSha256": "TkfBFh9oGUuePcfsVoEDzVgfnip0srkIeSOY0C4tw0s=",
+    "CodeSize": 982,
+    "Description": "this function inserts data info dynamodb table called posts",
+    "Environment": {
+        "Variables": {
+            "DB_TABLE_NAME": "AnhPollyProject",
+            "SNS_TOPIC": "arn:aws:sns:us-east-1:846382335153:anh_polly_events"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_NewPosts",
+    "FunctionName": "PostReader_NewPosts",
+    "Handler": "createpost.lambda_handler",
+    "LastModified": "2020-08-31T15:34:53.842+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "1041",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:34:53 GMT",
+            "x-amzn-requestid": "4d90c4da-f73e-4688-b90e-4eaccaa2dd28"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "4d90c4da-f73e-4688-b90e-4eaccaa2dd28",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "5ce3034c-f941-4b7a-88ea-3b9c5d868033",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:05 - :Creating Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "CodeSha256": "XviqP6YZxx829xhKnDBjH5qkNfRnv29DhRU6rMea/Mg=",
+    "CodeSize": 3102,
+    "Description": "This function converts the text from s3 to polly mp3",
+    "Environment": {
+        "Variables": {
+            "BUCKET_NAME": "anh-pollybucket-out",
+            "DB_TABLE_NAME": "AnhPollyProject"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio",
+    "FunctionName": "PostReader_ConvertToAudio",
+    "Handler": "convertoaudio.lambda_handler",
+    "LastModified": "2020-08-31T15:35:04.961+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "1020",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:05 GMT",
+            "x-amzn-requestid": "5ea527a6-5542-459c-ac5a-c658f76c28f4"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "5ea527a6-5542-459c-ac5a-c658f76c28f4",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "d262d391-044a-42ef-8a69-c137066a43d2",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:16 - :Creating Lambda function PostReader_GetPosts: =======================================
+{
+    "CodeSha256": "aV79D1YwJtgjSbsXZtIGoeMGokGNOBtwrpxeMcpYH/4=",
+    "CodeSize": 555,
+    "Description": "This function converts the text from s3 to polly mp3",
+    "Environment": {
+        "Variables": {
+            "DB_TABLE_NAME": "AnhPollyProject"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_GetPosts",
+    "FunctionName": "PostReader_GetPosts",
+    "Handler": "getposts.lambda_handler",
+    "LastModified": "2020-08-31T15:35:16.101+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "966",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:16 GMT",
+            "x-amzn-requestid": "78c5dd0b-0aa4-44e6-9eb6-01c06287e12c"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "78c5dd0b-0aa4-44e6-9eb6-01c06287e12c",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "381f5f36-5568-48e6-bf0a-b42135e66479",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:27 - :Adding IAM permission for SNS to invoke Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "362",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:27 GMT",
+            "x-amzn-requestid": "813a356b-9dae-4695-83a1-382a44a27ce9"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "813a356b-9dae-4695-83a1-382a44a27ce9",
+        "RetryAttempts": 0
+    },
+    "Statement": "{\"Sid\":\"lambda-policy-for-sns-invoke-1\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"sns.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:sns:us-east-1:846382335153:anh_polly_events\"}}}"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:27 - :Adding SNS subscription for Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "366",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 15:35:26 GMT",
+            "x-amzn-requestid": "2e470dee-3c7f-5354-83a6-5a29268025f1"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "2e470dee-3c7f-5354-83a6-5a29268025f1",
+        "RetryAttempts": 0
+    },
+    "SubscriptionArn": "arn:aws:sns:us-east-1:846382335153:anh_polly_events:4a2e45c7-426a-4308-bbb9-bdf692003abe"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:38 - :Creating new REST API : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "230",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:38 GMT",
+            "x-amz-apigw-id": "SJDPoJUWIAMEdWA=",
+            "x-amzn-requestid": "984183fd-6f38-440a-8295-e283de99417b"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "984183fd-6f38-440a-8295-e283de99417b",
+        "RetryAttempts": 0
+    },
+    "apiKeySource": "HEADER",
+    "createdDate": "2020-08-31 15:35:38+00:00",
+    "description": "My Lambda Polly API",
+    "endpointConfiguration": {
+        "types": [
+            "REGIONAL"
+        ]
+    },
+    "id": "zqxxmmcjg2",
+    "name": "AnhServerLessPollyAPI"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:49 - :Creating GET Method for REST API: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "135",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:49 GMT",
+            "x-amz-apigw-id": "SJDRYKKGIAMEczQ=",
+            "x-amzn-requestid": "a78c5b6f-de69-40e4-b849-c9dcb5ed60b6"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "a78c5b6f-de69-40e4-b849-c9dcb5ed60b6",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "GET",
+    "requestParameters": {
+        "method.request.querystring.postId": false
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:49 - :Creating integration for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "437",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:49 GMT",
+            "x-amz-apigw-id": "SJDRZLDnIAMEcFQ=",
+            "x-amzn-requestid": "24aaae3b-c467-4193-9ffc-63c094b42b3c"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "24aaae3b-c467-4193-9ffc-63c094b42b3c",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "q313n8bm9f",
+    "contentHandling": "CONVERT_TO_TEXT",
+    "httpMethod": "POST",
+    "passthroughBehavior": "WHEN_NO_TEMPLATES",
+    "requestTemplates": {
+        "application/json": "{\r\n    \"postId\" : \"$input.params('postId')\"\r\n}"
+    },
+    "timeoutInMillis": 29000,
+    "type": "AWS",
+    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:846382335153:function:PostReader_GetPosts/invocations"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:49 - :Creating method response for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:49 GMT",
+            "x-amz-apigw-id": "SJDRaKAooAMEcYA=",
+            "x-amzn-requestid": "4f4b507e-44c1-4c84-874f-938720b2870d"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "4f4b507e-44c1-4c84-874f-938720b2870d",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:49 - :Creating integration method response for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "185",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:49 GMT",
+            "x-amz-apigw-id": "SJDRaL4-IAMEbNw=",
+            "x-amzn-requestid": "58dc4954-1165-4ab7-bfd7-613561139db0"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "58dc4954-1165-4ab7-bfd7-613561139db0",
+        "RetryAttempts": 0
+    },
+    "contentHandling": "CONVERT_TO_TEXT",
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": null
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:50 - :Creating POST method for API : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "95",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:50 GMT",
+            "x-amz-apigw-id": "SJDRfJBToAMEdUw=",
+            "x-amzn-requestid": "5706386b-b031-48e5-a61f-75a58aaeb9f6"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "5706386b-b031-48e5-a61f-75a58aaeb9f6",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "POST",
+    "requestParameters": {}
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:50 - :Creating method response for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:50 GMT",
+            "x-amz-apigw-id": "SJDRgLaOoAMEdvw=",
+            "x-amzn-requestid": "3cfeed06-d14f-4d8c-91d7-0cce32c0bfaa"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "3cfeed06-d14f-4d8c-91d7-0cce32c0bfaa",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:50 - :Creating method integration for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "336",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:50 GMT",
+            "x-amz-apigw-id": "SJDRhIKEIAMEdMQ=",
+            "x-amzn-requestid": "853d9e3a-7f7b-4eec-9fa5-2cb8f644bec2"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "853d9e3a-7f7b-4eec-9fa5-2cb8f644bec2",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "q313n8bm9f",
+    "contentHandling": "CONVERT_TO_TEXT",
+    "httpMethod": "POST",
+    "passthroughBehavior": "WHEN_NO_MATCH",
+    "timeoutInMillis": 29000,
+    "type": "AWS",
+    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:846382335153:function:PostReader_NewPosts/invocations"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:50 - :Creating method integration response for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:50 GMT",
+            "x-amz-apigw-id": "SJDRhILJoAMEbWw=",
+            "x-amzn-requestid": "b98263ce-b1a6-4f32-8c95-3782acc18de5"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "b98263ce-b1a6-4f32-8c95-3782acc18de5",
+        "RetryAttempts": 0
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": null
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:51 - :Creating OPTIONS Method for CORS : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "75",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:51 GMT",
+            "x-amz-apigw-id": "SJDRmI6-IAMEd1w=",
+            "x-amzn-requestid": "cc57651e-3c56-424e-b892-8715b4e5ee3b"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "cc57651e-3c56-424e-b892-8715b4e5ee3b",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "OPTIONS"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:51 - :Creating OPTIONS Method response for CORS : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "269",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:51 GMT",
+            "x-amz-apigw-id": "SJDRnJWloAMEdWA=",
+            "x-amzn-requestid": "681f206e-3fd5-4c2a-9961-45885fe2f090"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "681f206e-3fd5-4c2a-9961-45885fe2f090",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": false,
+        "method.response.header.Access-Control-Allow-Methods": false,
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:51 - :Creating OPTIONS integration for OPTIONS method: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "196",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:51 GMT",
+            "x-amz-apigw-id": "SJDRnJHOoAMEdtA=",
+            "x-amzn-requestid": "acafbd26-0811-4d8a-bc73-417fe1f8991c"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "acafbd26-0811-4d8a-bc73-417fe1f8991c",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "q313n8bm9f",
+    "passthroughBehavior": "WHEN_NO_MATCH",
+    "requestTemplates": {
+        "application/json": "{\"statusCode\": 200}"
+    },
+    "timeoutInMillis": 29000,
+    "type": "MOCK"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:35:51 - :Creating OPTIONS integration response and CORS Headers: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "370",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:35:51 GMT",
+            "x-amz-apigw-id": "SJDRoL-JIAMEdYw=",
+            "x-amzn-requestid": "6f2f1386-08c5-4061-936f-e1f38face3f8"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "6f2f1386-08c5-4061-936f-e1f38face3f8",
+        "RetryAttempts": 0
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Methods": "'POST,GET,OPTIONS'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": "{\"statusCode\": 200}"
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:36:02 - :Creating new Deployment: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "83",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:36:02 GMT",
+            "x-amz-apigw-id": "SJDTRLh7IAMEdBA=",
+            "x-amzn-requestid": "56f31b1b-290b-4c65-9d6e-6e206a75f7c8"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "56f31b1b-290b-4c65-9d6e-6e206a75f7c8",
+        "RetryAttempts": 0
+    },
+    "createdDate": "2020-08-31 15:36:01+00:00",
+    "description": "Polly development gateway",
+    "id": "wejf0m"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:36:02 - :Updating Deployment STAGE for throttles: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "554",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:36:02 GMT",
+            "x-amz-apigw-id": "SJDTVLqUoAMEdyw=",
+            "x-amzn-requestid": "95b7e549-15d0-49b7-abe6-1e67508cb6c3"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "95b7e549-15d0-49b7-abe6-1e67508cb6c3",
+        "RetryAttempts": 0
+    },
+    "cacheClusterEnabled": false,
+    "cacheClusterStatus": "NOT_AVAILABLE",
+    "createdDate": "2020-08-31 15:36:01+00:00",
+    "deploymentId": "wejf0m",
+    "description": "Polly development gateway",
+    "lastUpdatedDate": "2020-08-31 15:36:02+00:00",
+    "methodSettings": {
+        "*/*": {
+            "cacheDataEncrypted": false,
+            "cacheTtlInSeconds": 300,
+            "cachingEnabled": false,
+            "dataTraceEnabled": false,
+            "metricsEnabled": false,
+            "requireAuthorizationForCacheControl": true,
+            "throttlingBurstLimit": 5,
+            "throttlingRateLimit": 2.0,
+            "unauthorizedCacheControlHeaderStrategy": "SUCCEED_WITH_RESPONSE_HEADER"
+        }
+    },
+    "stageName": "Anhdevelopment",
+    "tracingEnabled": false
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:36:12 - :Adding Lambda invoke permission for API Gateway: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "399",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 15:36:12 GMT",
+            "x-amzn-requestid": "5f38f236-8a32-45a1-a51c-f05b6497ba03"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "5f38f236-8a32-45a1-a51c-f05b6497ba03",
+        "RetryAttempts": 0
+    },
+    "Statement": "{\"Sid\":\"apigateway-lambda-invoke-perms-PostReader_ConvertToAudio\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"apigateway.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:execute-api:us-east-1:846382335153:zqxxmmcjg2/*\"}}}"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:36:13 - :Adding scripts.js to S3 bucket anh-pollybucket-in: =======================================
+{
+    "ETag": "\"cda43145bc93adfba10167da4f225ce6\"",
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "0",
+            "date": "Mon, 31 Aug 2020 15:36:14 GMT",
+            "etag": "\"cda43145bc93adfba10167da4f225ce6\"",
+            "server": "AmazonS3",
+            "x-amz-id-2": "/TRUDbkL0HHZ8OFqgcVDDqd6vz6efpqUwxwcNrB1WN5JJ+v0oqZPSB05mLMXQWvFrMIIANMK+cw=",
+            "x-amz-request-id": "DF8B694CE49B5F55"
+        },
+        "HTTPStatusCode": 200,
+        "HostId": "/TRUDbkL0HHZ8OFqgcVDDqd6vz6efpqUwxwcNrB1WN5JJ+v0oqZPSB05mLMXQWvFrMIIANMK+cw=",
+        "RequestId": "DF8B694CE49B5F55",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:36:13 - :Adding styles.css to S3 bucket anh-pollybucket-in: =======================================
+{
+    "ETag": "\"110dbab1b50144c12f104a2548de4de0\"",
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "0",
+            "date": "Mon, 31 Aug 2020 15:36:14 GMT",
+            "etag": "\"110dbab1b50144c12f104a2548de4de0\"",
+            "server": "AmazonS3",
+            "x-amz-id-2": "FKZY82Dm+SLc7sqEH9+0WvTY7KYT5pXz1tuoQW1fpATu5DDeyGSmGLYBNjrGEliqiQktAZXBYms=",
+            "x-amz-request-id": "5E2BE9CD2B5E4505"
+        },
+        "HTTPStatusCode": 200,
+        "HostId": "FKZY82Dm+SLc7sqEH9+0WvTY7KYT5pXz1tuoQW1fpATu5DDeyGSmGLYBNjrGEliqiQktAZXBYms=",
+        "RequestId": "5E2BE9CD2B5E4505",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_15:36:13 - :Adding index.html to S3 bucket anh-pollybucket-in: =======================================
+{
+    "ETag": "\"d6fba74d81021e652c324b5d952d0281\"",
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "0",
+            "date": "Mon, 31 Aug 2020 15:36:14 GMT",
+            "etag": "\"d6fba74d81021e652c324b5d952d0281\"",
+            "server": "AmazonS3",
+            "x-amz-id-2": "U3UdigOiE+bSwW9umlG8BFFRCmjS7jqQA3ElayLAM9mDp7TxT260xewjRsjS1VYRi1hED3yBZB0=",
+            "x-amz-request-id": "DBC82AC80A132527"
+        },
+        "HTTPStatusCode": 200,
+        "HostId": "U3UdigOiE+bSwW9umlG8BFFRCmjS7jqQA3ElayLAM9mDp7TxT260xewjRsjS1VYRi1hED3yBZB0=",
+        "RequestId": "DBC82AC80A132527",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:47:13 - :Deleting dynamodb Table: =======================================
+"AnhPollyProject"
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:47:13 - :Deleting bucket objects: =======================================
+[
+    {
+        "Deleted": [
+            {
+                "Key": "index.html"
+            },
+            {
+                "Key": "scripts.js"
+            },
+            {
+                "Key": "styles.css"
+            }
+        ],
+        "ResponseMetadata": {
+            "HTTPHeaders": {
+                "connection": "close",
+                "content-type": "application/xml",
+                "date": "Mon, 31 Aug 2020 16:47:14 GMT",
+                "server": "AmazonS3",
+                "transfer-encoding": "chunked",
+                "x-amz-id-2": "BKxFlrz1eO/lzMi8YzuZKPgDltXzEmpRchVGyJWnHaEqzWYSB+n4igWy4zlqqGp/i1F5GsHp9D8=",
+                "x-amz-request-id": "597A862445D4065F"
+            },
+            "HTTPStatusCode": 200,
+            "HostId": "BKxFlrz1eO/lzMi8YzuZKPgDltXzEmpRchVGyJWnHaEqzWYSB+n4igWy4zlqqGp/i1F5GsHp9D8=",
+            "RequestId": "597A862445D4065F",
+            "RetryAttempts": 0
+        }
+    }
+]
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:47:14 - :Deleting buckets: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 16:47:14 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "Kn2eWw043G+ACR1vB9gh4xOjVUQERg2Evao6IHzA9wlEGzUjubrEsARxFG5oDmzJXHCktZXkNzI=",
+            "x-amz-request-id": "E984A363233B01AC"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "Kn2eWw043G+ACR1vB9gh4xOjVUQERg2Evao6IHzA9wlEGzUjubrEsARxFG5oDmzJXHCktZXkNzI=",
+        "RequestId": "E984A363233B01AC",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:47:14 - :Deleting bucket objects: =======================================
+[]
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:47:14 - :Deleting buckets: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 16:47:15 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "fhYX1rfVSpvZMCdCzzY0oWT2/O1qKC0SiscORnwycp+h1NmbP8LzZAeYV0LAEdlIuRvIuey/Im4=",
+            "x-amz-request-id": "9DD28F5E285128EB"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "fhYX1rfVSpvZMCdCzzY0oWT2/O1qKC0SiscORnwycp+h1NmbP8LzZAeYV0LAEdlIuRvIuey/Im4=",
+        "RequestId": "9DD28F5E285128EB",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:47:14 - :Deleting SNS topic: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "201",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 16:47:13 GMT",
+            "x-amzn-requestid": "a0805c49-93d2-59d7-bfe6-0b8eb80087d7"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "a0805c49-93d2-59d7-bfe6-0b8eb80087d7",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:49:28 - :Creating new dynamodb Table: =======================================
+"dynamodb.Table(name='AnhPollyProject')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:49:29 - :Creating new S3 buckets: =======================================
+"s3.Bucket(name='anh-pollybucket-in')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:49:29 - :Creating new S3 buckets: =======================================
+"s3.Bucket(name='anh-pollybucket-out')"
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:49:30 - :Updating bucket policies: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 16:49:30 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "K/GKOTRwMYs36puDVBuFsL0UGK9fBQC5VZ53Dlu/VhVb5gpmOrSqTvsCL1y2BOHUxj442QBroDE=",
+            "x-amz-request-id": "9F68EA6FA5D9C2AB"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "K/GKOTRwMYs36puDVBuFsL0UGK9fBQC5VZ53Dlu/VhVb5gpmOrSqTvsCL1y2BOHUxj442QBroDE=",
+        "RequestId": "9F68EA6FA5D9C2AB",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:49:30 - :Updating bucket policies: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 16:49:31 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "50FkD+Km1xxOTW201lmYn8wbaPLxm3QiatqenV5wczt5RzUgMhuYQ5GHfJ5sHIi8IykmCuDxV5c=",
+            "x-amz-request-id": "84D3ED137B00FDAB"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "50FkD+Km1xxOTW201lmYn8wbaPLxm3QiatqenV5wczt5RzUgMhuYQ5GHfJ5sHIi8IykmCuDxV5c=",
+        "RequestId": "84D3ED137B00FDAB",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:49:30 - :Creating new SNS topic: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "323",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 16:49:30 GMT",
+            "x-amzn-requestid": "6d1dc27a-b49c-5776-8e4f-95bd98c672d0"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "6d1dc27a-b49c-5776-8e4f-95bd98c672d0",
+        "RetryAttempts": 0
+    },
+    "TopicArn": "arn:aws:sns:us-east-1:846382335153:anh_polly_events"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:49:41 - :Creating new IAM Policy for Lambda to access s3,sns,polly,dynamodb,logs: =======================================
+{
+    "Policy": {
+        "Arn": "arn:aws:iam::846382335153:policy/anh-lambda-policy",
+        "AttachmentCount": 0,
+        "CreateDate": "2020-08-31 16:49:41+00:00",
+        "DefaultVersionId": "v1",
+        "IsAttachable": true,
+        "Path": "/",
+        "PermissionsBoundaryUsageCount": 0,
+        "PolicyId": "ANPA4KECRQSY6M4NYIH5B",
+        "PolicyName": "anh-lambda-policy",
+        "UpdateDate": "2020-08-31 16:49:41+00:00"
+    },
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "769",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 16:49:41 GMT",
+            "x-amzn-requestid": "83f1ecfa-d992-4bbd-b723-a12b1537b01f"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "83f1ecfa-d992-4bbd-b723-a12b1537b01f",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:49:41 - :Creating new Lambda Role: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "784",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 16:49:41 GMT",
+            "x-amzn-requestid": "20e87baf-3278-4cd2-a391-4fd460290516"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "20e87baf-3278-4cd2-a391-4fd460290516",
+        "RetryAttempts": 0
+    },
+    "Role": {
+        "Arn": "arn:aws:iam::846382335153:role/anh-lambda-role",
+        "AssumeRolePolicyDocument": {
+            "Statement": [
+                {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "lambda.amazonaws.com"
+                    }
+                }
+            ],
+            "Version": "2012-10-17"
+        },
+        "CreateDate": "2020-08-31 16:49:41+00:00",
+        "Path": "/",
+        "RoleId": "AROA4KECRQSYU22PT5LY4",
+        "RoleName": "anh-lambda-role"
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:49:41 - :Attaching Lambda policy to Lambda Role: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "212",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 16:49:41 GMT",
+            "x-amzn-requestid": "c5d1c738-022c-47f8-95b9-7b5fc383fa27"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "c5d1c738-022c-47f8-95b9-7b5fc383fa27",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:49:53 - :Creating Lambda function PostReader_NewPosts: =======================================
+{
+    "CodeSha256": "TkfBFh9oGUuePcfsVoEDzVgfnip0srkIeSOY0C4tw0s=",
+    "CodeSize": 982,
+    "Description": "this function inserts data info dynamodb table called posts",
+    "Environment": {
+        "Variables": {
+            "DB_TABLE_NAME": "AnhPollyProject",
+            "SNS_TOPIC": "arn:aws:sns:us-east-1:846382335153:anh_polly_events"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_NewPosts",
+    "FunctionName": "PostReader_NewPosts",
+    "Handler": "createpost.lambda_handler",
+    "LastModified": "2020-08-31T16:49:53.775+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "1041",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:49:53 GMT",
+            "x-amzn-requestid": "4c50be24-7810-45fb-be2b-51e7a1c3c94f"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "4c50be24-7810-45fb-be2b-51e7a1c3c94f",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "73ba79c4-a40f-45d3-a332-b8126b7c499c",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:05 - :Creating Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "CodeSha256": "XviqP6YZxx829xhKnDBjH5qkNfRnv29DhRU6rMea/Mg=",
+    "CodeSize": 3102,
+    "Description": "This function converts the text from s3 to polly mp3",
+    "Environment": {
+        "Variables": {
+            "BUCKET_NAME": "anh-pollybucket-out",
+            "DB_TABLE_NAME": "AnhPollyProject"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio",
+    "FunctionName": "PostReader_ConvertToAudio",
+    "Handler": "convertoaudio.lambda_handler",
+    "LastModified": "2020-08-31T16:50:04.958+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "1020",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:05 GMT",
+            "x-amzn-requestid": "94b7acba-ac7a-40d1-b758-619ab86bb829"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "94b7acba-ac7a-40d1-b758-619ab86bb829",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "043574e3-cf4a-4bf3-a3ee-307cb1648b26",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:16 - :Creating Lambda function PostReader_GetPosts: =======================================
+{
+    "CodeSha256": "aV79D1YwJtgjSbsXZtIGoeMGokGNOBtwrpxeMcpYH/4=",
+    "CodeSize": 555,
+    "Description": "This function converts the text from s3 to polly mp3",
+    "Environment": {
+        "Variables": {
+            "DB_TABLE_NAME": "AnhPollyProject"
+        }
+    },
+    "FunctionArn": "arn:aws:lambda:us-east-1:846382335153:function:PostReader_GetPosts",
+    "FunctionName": "PostReader_GetPosts",
+    "Handler": "getposts.lambda_handler",
+    "LastModified": "2020-08-31T16:50:16.218+0000",
+    "LastUpdateStatus": "Successful",
+    "MemorySize": 128,
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "966",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:16 GMT",
+            "x-amzn-requestid": "fa1fc3a8-a1bf-4858-8b6b-e98ad1bd0e8a"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "fa1fc3a8-a1bf-4858-8b6b-e98ad1bd0e8a",
+        "RetryAttempts": 0
+    },
+    "RevisionId": "a4c7adc4-66cd-4d17-9bd4-b78708464b27",
+    "Role": "arn:aws:iam::846382335153:role/anh-lambda-role",
+    "Runtime": "python2.7",
+    "State": "Active",
+    "Timeout": 300,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Version": "$LATEST"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:27 - :Adding IAM permission for SNS to invoke Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "362",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:27 GMT",
+            "x-amzn-requestid": "784fe938-b07e-4351-9ce1-f61e4ae83324"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "784fe938-b07e-4351-9ce1-f61e4ae83324",
+        "RetryAttempts": 0
+    },
+    "Statement": "{\"Sid\":\"lambda-policy-for-sns-invoke-1\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"sns.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:sns:us-east-1:846382335153:anh_polly_events\"}}}"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:27 - :Adding SNS subscription for Lambda function PostReader_ConvertToAudio: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "366",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 16:50:27 GMT",
+            "x-amzn-requestid": "bf41f57c-1d3f-5c9c-b67a-a2bb31ac171f"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "bf41f57c-1d3f-5c9c-b67a-a2bb31ac171f",
+        "RetryAttempts": 0
+    },
+    "SubscriptionArn": "arn:aws:sns:us-east-1:846382335153:anh_polly_events:26b1f7f9-7c2f-44dd-8aca-ab228deae81f"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:38 - :Creating new REST API : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "227",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:38 GMT",
+            "x-amz-apigw-id": "SJOOxKZgoAMEdDQ=",
+            "x-amzn-requestid": "76cc5f5e-3026-4d3d-8e68-cb6c1904a87f"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "76cc5f5e-3026-4d3d-8e68-cb6c1904a87f",
+        "RetryAttempts": 0
+    },
+    "apiKeySource": "HEADER",
+    "createdDate": "2020-08-31 16:50:38+00:00",
+    "description": "My Lambda Polly API",
+    "endpointConfiguration": {
+        "types": [
+            "REGIONAL"
+        ]
+    },
+    "id": "fkndk5pusc",
+    "name": "ServerLessPollyAPI"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:49 - :Creating GET Method for REST API: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "135",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:49 GMT",
+            "x-amz-apigw-id": "SJOQiIhYoAMEcbA=",
+            "x-amzn-requestid": "674f4c39-7419-408a-92a5-538d2deecf8a"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "674f4c39-7419-408a-92a5-538d2deecf8a",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "GET",
+    "requestParameters": {
+        "method.request.querystring.postId": false
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:49 - :Creating integration for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "437",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:49 GMT",
+            "x-amz-apigw-id": "SJOQjIVKoAMEclA=",
+            "x-amzn-requestid": "7c187ad2-578d-439c-a6b8-3d490831d6a7"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "7c187ad2-578d-439c-a6b8-3d490831d6a7",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "akyv1rhsv8",
+    "contentHandling": "CONVERT_TO_TEXT",
+    "httpMethod": "POST",
+    "passthroughBehavior": "WHEN_NO_TEMPLATES",
+    "requestTemplates": {
+        "application/json": "{\r\n    \"postId\" : \"$input.params('postId')\"\r\n}"
+    },
+    "timeoutInMillis": 29000,
+    "type": "AWS",
+    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:846382335153:function:PostReader_GetPosts/invocations"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:49 - :Creating method response for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:49 GMT",
+            "x-amz-apigw-id": "SJOQjLi4oAMEcYA=",
+            "x-amzn-requestid": "ca10cda6-8dfa-4591-b329-bcfa70c08c73"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "ca10cda6-8dfa-4591-b329-bcfa70c08c73",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:49 - :Creating integration method response for GET method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "185",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:49 GMT",
+            "x-amz-apigw-id": "SJOQkLr1IAMEczQ=",
+            "x-amzn-requestid": "97cc9613-25c3-499c-b05e-8dcadfd831bf"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "97cc9613-25c3-499c-b05e-8dcadfd831bf",
+        "RetryAttempts": 0
+    },
+    "contentHandling": "CONVERT_TO_TEXT",
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": null
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:50 - :Creating POST method for API : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "95",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:50 GMT",
+            "x-amz-apigw-id": "SJOQpIhfIAMEcbA=",
+            "x-amzn-requestid": "940b753a-8fa8-4a8f-9565-6283ba075c4f"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "940b753a-8fa8-4a8f-9565-6283ba075c4f",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "POST",
+    "requestParameters": {}
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:50 - :Creating method response for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:50 GMT",
+            "x-amz-apigw-id": "SJOQqLr5oAMEczQ=",
+            "x-amzn-requestid": "fe59bbd3-e9ce-47dd-8b44-6757a15ab596"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "fe59bbd3-e9ce-47dd-8b44-6757a15ab596",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:50 - :Creating method integration for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "336",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:50 GMT",
+            "x-amz-apigw-id": "SJOQrIJGIAMEbRg=",
+            "x-amzn-requestid": "14a60807-75a8-4e1d-8aba-b7c3955f07fa"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "14a60807-75a8-4e1d-8aba-b7c3955f07fa",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "akyv1rhsv8",
+    "contentHandling": "CONVERT_TO_TEXT",
+    "httpMethod": "POST",
+    "passthroughBehavior": "WHEN_NO_MATCH",
+    "timeoutInMillis": 29000,
+    "type": "AWS",
+    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:846382335153:function:PostReader_NewPosts/invocations"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:50 - :Creating method integration response for POST method : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "149",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:50 GMT",
+            "x-amz-apigw-id": "SJOQrKu9oAMEdeg=",
+            "x-amzn-requestid": "07f813ad-b421-4098-9fed-15b4cd1f354a"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "07f813ad-b421-4098-9fed-15b4cd1f354a",
+        "RetryAttempts": 0
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": null
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:51 - :Creating OPTIONS Method for CORS : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "75",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:51 GMT",
+            "x-amz-apigw-id": "SJOQwI8fIAMEdvw=",
+            "x-amzn-requestid": "049377ba-8e72-4a58-b8fd-32d10b124d1d"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "049377ba-8e72-4a58-b8fd-32d10b124d1d",
+        "RetryAttempts": 0
+    },
+    "apiKeyRequired": false,
+    "authorizationType": "NONE",
+    "httpMethod": "OPTIONS"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:51 - :Creating OPTIONS Method response for CORS : =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "269",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:51 GMT",
+            "x-amz-apigw-id": "SJOQxJBWoAMEdBA=",
+            "x-amzn-requestid": "324cab9e-c48c-4908-ace6-4915177d5293"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "324cab9e-c48c-4908-ace6-4915177d5293",
+        "RetryAttempts": 0
+    },
+    "responseModels": {
+        "application/json": "Empty"
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": false,
+        "method.response.header.Access-Control-Allow-Methods": false,
+        "method.response.header.Access-Control-Allow-Origin": false
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:51 - :Creating OPTIONS integration for OPTIONS method: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "196",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:51 GMT",
+            "x-amz-apigw-id": "SJOQxKuGIAMEdnw=",
+            "x-amzn-requestid": "72fff543-e3ea-432e-8f15-0210e28b97c1"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "72fff543-e3ea-432e-8f15-0210e28b97c1",
+        "RetryAttempts": 0
+    },
+    "cacheKeyParameters": [],
+    "cacheNamespace": "akyv1rhsv8",
+    "passthroughBehavior": "WHEN_NO_MATCH",
+    "requestTemplates": {
+        "application/json": "{\"statusCode\": 200}"
+    },
+    "timeoutInMillis": 29000,
+    "type": "MOCK"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:50:51 - :Creating OPTIONS integration response and CORS Headers: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "370",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:50:51 GMT",
+            "x-amz-apigw-id": "SJOQyJvBIAMEbhw=",
+            "x-amzn-requestid": "3e7e5c93-0512-4660-8776-cd49498f90b3"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "3e7e5c93-0512-4660-8776-cd49498f90b3",
+        "RetryAttempts": 0
+    },
+    "responseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Methods": "'POST,GET,OPTIONS'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+    },
+    "responseTemplates": {
+        "application/json": "{\"statusCode\": 200}"
+    },
+    "statusCode": "200"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:51:02 - :Creating new Deployment: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "83",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:51:02 GMT",
+            "x-amz-apigw-id": "SJOSbJj2oAMEbXQ=",
+            "x-amzn-requestid": "878a235a-9ace-48f2-b16b-4fcab4f0827b"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "878a235a-9ace-48f2-b16b-4fcab4f0827b",
+        "RetryAttempts": 0
+    },
+    "createdDate": "2020-08-31 16:51:02+00:00",
+    "description": "Polly development gateway",
+    "id": "h4ef81"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:51:02 - :Updating Deployment STAGE for throttles: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "551",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:51:02 GMT",
+            "x-amz-apigw-id": "SJOSgJmEoAMEd5A=",
+            "x-amzn-requestid": "f1079635-0312-4af2-bfca-905b5faa10c7"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "f1079635-0312-4af2-bfca-905b5faa10c7",
+        "RetryAttempts": 0
+    },
+    "cacheClusterEnabled": false,
+    "cacheClusterStatus": "NOT_AVAILABLE",
+    "createdDate": "2020-08-31 16:51:02+00:00",
+    "deploymentId": "h4ef81",
+    "description": "Polly development gateway",
+    "lastUpdatedDate": "2020-08-31 16:51:02+00:00",
+    "methodSettings": {
+        "*/*": {
+            "cacheDataEncrypted": false,
+            "cacheTtlInSeconds": 300,
+            "cachingEnabled": false,
+            "dataTraceEnabled": false,
+            "metricsEnabled": false,
+            "requireAuthorizationForCacheControl": true,
+            "throttlingBurstLimit": 5,
+            "throttlingRateLimit": 2.0,
+            "unauthorizedCacheControlHeaderStrategy": "SUCCEED_WITH_RESPONSE_HEADER"
+        }
+    },
+    "stageName": "development",
+    "tracingEnabled": false
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:51:13 - :Adding Lambda invoke permission for API Gateway: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "connection": "keep-alive",
+            "content-length": "399",
+            "content-type": "application/json",
+            "date": "Mon, 31 Aug 2020 16:51:13 GMT",
+            "x-amzn-requestid": "bdde3d5c-ea03-4562-848c-c4c4e64fbb73"
+        },
+        "HTTPStatusCode": 201,
+        "RequestId": "bdde3d5c-ea03-4562-848c-c4c4e64fbb73",
+        "RetryAttempts": 0
+    },
+    "Statement": "{\"Sid\":\"apigateway-lambda-invoke-perms-PostReader_ConvertToAudio\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"apigateway.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:846382335153:function:PostReader_ConvertToAudio\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:execute-api:us-east-1:846382335153:fkndk5pusc/*\"}}}"
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:51:13 - :Adding scripts.js to S3 bucket anh-pollybucket-in: =======================================
+{
+    "ETag": "\"0e65300859e149ffb3cb1d1b4e5ee5d5\"",
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "0",
+            "date": "Mon, 31 Aug 2020 16:51:14 GMT",
+            "etag": "\"0e65300859e149ffb3cb1d1b4e5ee5d5\"",
+            "server": "AmazonS3",
+            "x-amz-id-2": "sxXXX/SxDK4+ykS++vs3VH/yS1ISxRVRhEm/SWW6TuZ8Cpjde8K7MbGBayTnl8sYT3aT6VFefTQ=",
+            "x-amz-request-id": "9T6W3Y7K9SCZAK4G"
+        },
+        "HTTPStatusCode": 200,
+        "HostId": "sxXXX/SxDK4+ykS++vs3VH/yS1ISxRVRhEm/SWW6TuZ8Cpjde8K7MbGBayTnl8sYT3aT6VFefTQ=",
+        "RequestId": "9T6W3Y7K9SCZAK4G",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:51:13 - :Adding styles.css to S3 bucket anh-pollybucket-in: =======================================
+{
+    "ETag": "\"110dbab1b50144c12f104a2548de4de0\"",
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "0",
+            "date": "Mon, 31 Aug 2020 16:51:14 GMT",
+            "etag": "\"110dbab1b50144c12f104a2548de4de0\"",
+            "server": "AmazonS3",
+            "x-amz-id-2": "2vJQfb2JCoNsx66O+WfgrnKLar+URIf9cIcrvR6O6AeAbqJOBjieWq0cKLSMnAWV9q7F7hzh7Cs=",
+            "x-amz-request-id": "F831D6690602C498"
+        },
+        "HTTPStatusCode": 200,
+        "HostId": "2vJQfb2JCoNsx66O+WfgrnKLar+URIf9cIcrvR6O6AeAbqJOBjieWq0cKLSMnAWV9q7F7hzh7Cs=",
+        "RequestId": "F831D6690602C498",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_16:51:13 - :Adding index.html to S3 bucket anh-pollybucket-in: =======================================
+{
+    "ETag": "\"d6fba74d81021e652c324b5d952d0281\"",
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "0",
+            "date": "Mon, 31 Aug 2020 16:51:14 GMT",
+            "etag": "\"d6fba74d81021e652c324b5d952d0281\"",
+            "server": "AmazonS3",
+            "x-amz-id-2": "YQWgs1HAYr/cMYIBbRjP+2myx8m+gZ+L+VrwXI8rOS12vxobvaDvCOI27q6UcVwCDiCdu36tMxk=",
+            "x-amz-request-id": "A752FC23A5C5D146"
+        },
+        "HTTPStatusCode": 200,
+        "HostId": "YQWgs1HAYr/cMYIBbRjP+2myx8m+gZ+L+VrwXI8rOS12vxobvaDvCOI27q6UcVwCDiCdu36tMxk=",
+        "RequestId": "A752FC23A5C5D146",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_17:05:57 - :Deleting dynamodb Table: =======================================
+"AnhPollyProject"
+ =================== END OF OUTPUT ====================
+INFO:20200831_17:05:58 - :Deleting bucket objects: =======================================
+[
+    {
+        "Deleted": [
+            {
+                "Key": "scripts.js"
+            },
+            {
+                "Key": "styles.css"
+            },
+            {
+                "Key": "index.html"
+            }
+        ],
+        "ResponseMetadata": {
+            "HTTPHeaders": {
+                "connection": "close",
+                "content-type": "application/xml",
+                "date": "Mon, 31 Aug 2020 17:05:59 GMT",
+                "server": "AmazonS3",
+                "transfer-encoding": "chunked",
+                "x-amz-id-2": "9/8TYzyw5mFWcUsMxCbRsnQ8JCJv2C3TX/8FHJH1UZ5So9xP4d0nHwWIsvNAT3Fe3cYQkNCA/D4=",
+                "x-amz-request-id": "0NBK5X4T9VAQBV3J"
+            },
+            "HTTPStatusCode": 200,
+            "HostId": "9/8TYzyw5mFWcUsMxCbRsnQ8JCJv2C3TX/8FHJH1UZ5So9xP4d0nHwWIsvNAT3Fe3cYQkNCA/D4=",
+            "RequestId": "0NBK5X4T9VAQBV3J",
+            "RetryAttempts": 0
+        }
+    }
+]
+ =================== END OF OUTPUT ====================
+INFO:20200831_17:05:58 - :Deleting buckets: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 17:05:59 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "RPkQuLhJ1owNuA/L14nn4zuS8qnW6tvpkYctsMBoBXpYwOgbCJCrwY06dY6ZH97KnFwNFRfzSK4=",
+            "x-amz-request-id": "B8ADC9EC168B58DE"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "RPkQuLhJ1owNuA/L14nn4zuS8qnW6tvpkYctsMBoBXpYwOgbCJCrwY06dY6ZH97KnFwNFRfzSK4=",
+        "RequestId": "B8ADC9EC168B58DE",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_17:05:58 - :Deleting bucket objects: =======================================
+[
+    {
+        "Deleted": [
+            {
+                "Key": "77838c33-f307-4165-a320-f7f0cb44e7ba.mp3"
+            },
+            {
+                "Key": "9cd0e58f-5a36-487f-85ba-350af8e3cd55.mp3"
+            },
+            {
+                "Key": "26e2accc-be33-41be-8d74-65c78eaa7c2c.mp3"
+            },
+            {
+                "Key": "81a02db9-a19c-445b-a020-735c0b43a775.mp3"
+            },
+            {
+                "Key": "e5faa54c-0b04-4c29-86d8-70b63fda8ee1.mp3"
+            }
+        ],
+        "ResponseMetadata": {
+            "HTTPHeaders": {
+                "connection": "close",
+                "content-type": "application/xml",
+                "date": "Mon, 31 Aug 2020 17:05:59 GMT",
+                "server": "AmazonS3",
+                "transfer-encoding": "chunked",
+                "x-amz-id-2": "gVKI959zl6tEhH27Lg0bHPMgdtQNlVBr4n9QJ6w9SDnPEzQsVY8wrxyPZ03Ck3M0ZKiZ4JNIJkI=",
+                "x-amz-request-id": "4732FD83ED148828"
+            },
+            "HTTPStatusCode": 200,
+            "HostId": "gVKI959zl6tEhH27Lg0bHPMgdtQNlVBr4n9QJ6w9SDnPEzQsVY8wrxyPZ03Ck3M0ZKiZ4JNIJkI=",
+            "RequestId": "4732FD83ED148828",
+            "RetryAttempts": 0
+        }
+    }
+]
+ =================== END OF OUTPUT ====================
+INFO:20200831_17:05:58 - :Deleting buckets: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "date": "Mon, 31 Aug 2020 17:05:59 GMT",
+            "server": "AmazonS3",
+            "x-amz-id-2": "1KuLhTLZSGyB26EigdaRtLHLQNYi7j1PfVI04UlrVoA7vNPf+Pd0JM0tmx5yHURkSlyYlHeKNiA=",
+            "x-amz-request-id": "31B6C9726697F1AF"
+        },
+        "HTTPStatusCode": 204,
+        "HostId": "1KuLhTLZSGyB26EigdaRtLHLQNYi7j1PfVI04UlrVoA7vNPf+Pd0JM0tmx5yHURkSlyYlHeKNiA=",
+        "RequestId": "31B6C9726697F1AF",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
+INFO:20200831_17:05:58 - :Deleting SNS topic: =======================================
+{
+    "ResponseMetadata": {
+        "HTTPHeaders": {
+            "content-length": "201",
+            "content-type": "text/xml",
+            "date": "Mon, 31 Aug 2020 17:05:58 GMT",
+            "x-amzn-requestid": "e6fb3e8b-e7ca-57bf-9601-694cd7fc317f"
+        },
+        "HTTPStatusCode": 200,
+        "RequestId": "e6fb3e8b-e7ca-57bf-9601-694cd7fc317f",
+        "RetryAttempts": 0
+    }
+}
+ =================== END OF OUTPUT ====================
