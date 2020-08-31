@@ -29,6 +29,17 @@ The scripts for API gateway try to add some examples and documents to help under
 * AWS programmatic access configured with Accesskey and Secretkey in .aws folder
 * python3 should be available via shell PATH
 
+## Using ubuntu 18.04 to host the prerequisites ##
+```
+sudo apt update -y
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.7 -y
+apt install python3-pip -y
+pip3 install boto3
+sudo apt-get install awscli -y
+```
+
 ## Deploying the stack ##
 Edit 00_env_vars.sh file to adjust the default settings for table name, api name and other parameters.
 ```
